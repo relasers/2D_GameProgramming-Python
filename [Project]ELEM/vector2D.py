@@ -1,36 +1,36 @@
 # for Calculate Vector
 import math
-EffectEffer = 0.0001
+EFFECT_EFFER = 0.0001
 
 
 class Vec2D:
-    x = 0
-    y = 0
+    _m_x = 0
+    _m_y = 0
 
     def __init__(self, point_x, point_y):
-        self.x = point_x
-        self.y = point_y
+        self._m_x = point_x
+        self._m_x = point_y
 
     def __add__(self, other):
-        return self.x + other.x, self.y + other.y
+        return self._m_x + other.x, self._m_y + other.y
     __radd__ = __add__
 
     def __sub__(self, other):
-        return self.x - other.x, self.y - other.y
+        return self._m_x - other.x, self._m_y - other.y
     __rsub__ = __sub__
 
     def __mul__(self, other):
-        return self.x * other, self.y * other
+        return self._m_x * other, self._m_y * other
     __rmul__ = __mul__
 
     def __eq__(self, other):
-        return (math.fabs(self.x - other.x) < EffectEffer) and (math.fabs(self.y - other.y) < EffectEffer)
+        return (math.fabs(self._m_x - other.x) < EFFECT_EFFER) and (math.fabs(self._m_y - other.y) < EFFECT_EFFER)
 
-    def normalize(self):
-        flength = self.length()
+    def _normalize(self):
+        flength = self._length()
         if flength != 0:
-            self.x /= flength
-            self.y /= flength
+            self._m_x /= flength
+            self._m_y /= flength
 
-    def length(self):
-        return math.sqrt(self.x * self.x + self.y * self.y)
+    def _length(self):
+        return math.sqrt(self._m_x * self._m_x + self._m_y * self._m_y)
