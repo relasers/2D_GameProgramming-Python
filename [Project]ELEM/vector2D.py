@@ -9,7 +9,7 @@ class Vec2D:
 
     def __init__(self, point_x, point_y):
         self.x = point_x
-        self.x = point_y
+        self.y = point_y
 
     def __add__(self, other):
         return self.x + other.x, self.y + other.y

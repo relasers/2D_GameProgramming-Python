@@ -24,7 +24,6 @@ def update():
         logo_time = 0
         FrameWork.push_state(Scene_Title)
 
-    delay(0.01)
     logo_time += 0.01
 
 def draw():

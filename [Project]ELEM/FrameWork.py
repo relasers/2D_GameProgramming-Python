@@ -1,8 +1,9 @@
 from pico2d import *
+import time
 
 open_canvas()
 
-UPDATE_DELAY = 0.016
+UPDATE_DELAY = 1.0 / 60.0
 
 running = None
 stack = None
@@ -43,10 +44,13 @@ def run(start_state):
     running = True
     stack = [start_state]
     start_state.enter()
+    current_time = time.clock()
     while running:
-        stack[-1].handle_events()
-        stack[-1].update()
-        stack[-1].draw()
+        if time.clock() - current_time > UPDATE_DELAY:
+            current_time = time.clock()
+            stack[-1].handle_events()
+            stack[-1].update()
+            stack[-1].draw()
     # repeatedly delete the top of the stack
     while len(stack) > 0:
         stack[-1].exit()

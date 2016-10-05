@@ -1,24 +1,27 @@
 from pico2d import *
+import FrameWork
+import Scene_MainGame
 
+name = "TitleState"
 
 def enter():
+    pass
+
+def exit():
     close_canvas()
 
 
-def exit():
-    pass
-
-
 def update():
-    pass
+    FrameWork.push_state(Scene_MainGame)
 
 
 def draw():
-    pass
+    clear_canvas()
+    update_canvas()
 
 
 def handle_events():
-    pass
+    events = get_events()
 
 
 def pause():
