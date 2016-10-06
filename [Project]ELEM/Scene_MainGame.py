@@ -2,9 +2,6 @@ from pico2d import *
 import FrameWork
 from Ruby import *
 
-FPS = 60.0
-FRS_TIME = 1.0 / FPS
-
 name = "MainState"
 ruby = None
 
