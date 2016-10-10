@@ -222,7 +222,13 @@ class Image:
         rect = to_sdl_rect(x, y, w, h)
         SDL_RenderCopy(renderer, self.texture, None, rect)
 
-
+    def clip_rotate_draw(self, rad, left, bottom, width, height, x, y, w=None, h=None):
+        """Rotate(in radian unit) and draw image to back buffer"""
+        if w == None and h == None:
+            w,h = width, height
+        src_rect = SDL_Rect(left, self.h - bottom - height, width, height)
+        dest_rect = to_sdl_rect(x-w/2, y-h/2, w, h)
+        SDL_RenderCopyEx(renderer, self.texture, src_rect, dest_rect, math.degrees(-rad), None, SDL_FLIP_NONE);
 
     def clip_draw(self, left, bottom, width, height, x, y, w=None, h=None):
         """Clip a rectangle from image and draw"""

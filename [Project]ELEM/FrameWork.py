@@ -5,6 +5,9 @@ open_canvas()
 
 UPDATE_DELAY = 1.0 / 60.0
 
+CLIENT_WIDTH = 1200
+CLIENT_HEIGHT = 800
+
 running = None
 stack = None
 
