@@ -2,7 +2,7 @@ from pico2d import *
 
 
 class BackGround:
-    pass
+    back_1_1 = None
 
 
 class BKStage1(BackGround):

@@ -1,16 +1,14 @@
 from pico2d import *
 import FrameWork
+import GameManager
 from obj_Bullet import *
 from obj_Player import *
 
 name = "MainState"
-ruby = None
-p_bullet = []
+
 
 def enter():
-    global ruby
-    open_canvas(FrameWork.CLIENT_WIDTH, FrameWork.CLIENT_HEIGHT)
-    ruby = Ruby(600, 600)
+    GameManager.buildgame()
 
 
 def exit():
@@ -18,18 +16,20 @@ def exit():
 
 
 def update():
-    global p_bullet
-    if ruby.update() is True:
-        p_bullet += [ruby.shoot()]
-    for bullets in p_bullet:
+    GameManager.Player.update()
+
+    for bullets in GameManager.p_bullet:
         bullets.update()
 
-def draw():
-    global p_bullet
-    clear_canvas()
-    ruby.draw()
+    for bullets in GameManager.p_bullet:
+        if bullets.isout() is True:
+            GameManager.p_bullet.remove(bullets)
 
-    for bullets in p_bullet:
+def draw():
+    clear_canvas()
+    GameManager.Player.draw()
+
+    for bullets in GameManager.p_bullet:
         bullets.draw()
 
     update_canvas()
@@ -42,8 +42,10 @@ def handle_events():
             FrameWork.quit()
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
             FrameWork.quit()
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_q):
+            GameManager.Player_Power += 1
         else:
-            ruby.handle_chara(event)
+            GameManager.Player.handle_chara(event)
 
 def pause():
     pass

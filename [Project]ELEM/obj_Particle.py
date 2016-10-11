@@ -2,4 +2,7 @@ from pico2d import *
 
 
 class Particle:
-    pass
+
+    def __init__(self):
+
+        pass

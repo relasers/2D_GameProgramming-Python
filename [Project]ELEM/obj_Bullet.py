@@ -1,5 +1,7 @@
 from vector2D import *
 from pico2d import *
+import GameManager
+import FrameWork
 import math
 
 
@@ -10,6 +12,9 @@ class Bullet:
     Speed = 0
     SpeedRate = 0
     rad = 0
+
+    spr_player_bullet = None
+
     def __init__(self, spriteid, x, y, angle, anglerate, speed, speedrate):
         self.SpriteID = spriteid
         self.point = Vec2D(x, y)
@@ -17,6 +22,9 @@ class Bullet:
         self.AngleRate = anglerate
         self.Speed = speed
         self.SpeedRate = speedrate
+
+        if Bullet.spr_player_bullet is None:
+            Bullet.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
 
     def update(self):
         self.rad = self.Angle*math.pi/180
@@ -27,9 +35,13 @@ class Bullet:
         self.Angle += self.AngleRate
         self.Speed += self.SpeedRate
 
+    # Check Bullet Out of Client
+    def isout(self):
+        if FrameWork.CLIENT_WIDTH < self.point.x or self.point.x < 0 or FrameWork.CLIENT_HEIGHT < self.point.y or self.point.y < 0:
+            return True
+
 
 class PlayerBullet(Bullet):
-    image = None
 
     def __init__(self, spriteid, x, y, angle, anglerate, speed, speedrate):
         self.SpriteID = spriteid
@@ -39,8 +51,43 @@ class PlayerBullet(Bullet):
         self.Speed = speed
         self.SpeedRate = speedrate
 
-        if PlayerBullet.image == None:
-            PlayerBullet.image = load_image('Resources/Images/Bullets/RBullet.png')
+        if Bullet.spr_player_bullet is None:
+            Bullet.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
 
     def draw(self):
-        self.image.clip_rotate_draw(self.rad, 0, 32, 32, 16, self.point.x, self.point.y)
+        self.spr_player_bullet.opacify(0.3)
+        self.spr_player_bullet.clip_rotate_draw(self.rad, 0, 32, 32, 16, self.point.x, self.point.y)
+
+
+class PlayerBulletChaser(PlayerBullet):
+
+    def __init__(self, spriteid, x, y, angle, anglerate, speed, speedrate):
+        self.SpriteID = spriteid
+        self.point = Vec2D(x, y)
+        self.Angle = angle
+        self.AngleRate = anglerate
+        self.Speed = speed
+        self.SpeedRate = speedrate
+
+        if Bullet.spr_player_bullet is None:
+            Bullet.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
+
+    def draw(self):
+        self.spr_player_bullet.opacify(0.3)
+        self.spr_player_bullet.clip_rotate_draw(self.rad, 0, 0, 32, 32, self.point.x, self.point.y)
+
+    def update(self):
+        if len(GameManager.enemy) is 0:
+            self.rad = self.Angle*math.pi/180
+
+            self.point.x += self.Speed * math.cos(self.rad)
+            self.point.y += self.Speed * math.sin(self.rad)
+
+            self.Angle += self.AngleRate
+            self.Speed += self.SpeedRate
+        else:
+            self.target = Vec2D(0, 0)
+            self.target += self.point
+            self.target -= GameManager.enemy[0].point
+            self.target._normalize()
+            self.point += self.target*self.speed

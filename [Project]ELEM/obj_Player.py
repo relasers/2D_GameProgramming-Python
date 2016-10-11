@@ -1,6 +1,7 @@
 from vector2D import *
 from pico2d import *
 from obj_Bullet import *
+import GameManager
 import random
 import math
 
@@ -9,8 +10,8 @@ class Player:
     ST_X_NONE, ST_X_FORWARD, ST_X_BAKWARD = 0, 1, 2
     ST_Y_NONE, ST_Y_UP, ST_Y_DOWN = 3, 4, 5
 
-    HIGH_SPEED = 6
-    LOW_SPEED = 3
+    HIGH_SPEED = 10
+    LOW_SPEED = 4
 
     TICK_FRAME = 5
     TICK_SHOT = 5
@@ -37,22 +38,19 @@ class Ruby(Player):
         self.speed = self.HIGH_SPEED
         self.slowmode = False
 
-        if Ruby.image == None:
+        if Ruby.image is None:
             Ruby.image = load_image('Resources/images/Characters/Ally/Ruby_set.png')
 
         self.hit = 3
-        self.live = 3
         self.isshooting = False
         self.isalive = True
 
     def draw(self):
-        if self.xdir == self.ST_X_BAKWARD:
-            self.image.clip_draw(self.frame * 64, 0, 64, 64, self.point.x, self.point.y)
-        else:
-            self.image.clip_draw(self.frame * 64, 64, 64, 64, self.point.x, self.point.y)
-
-    def shoot(self):
-        return PlayerBullet(0, self.point.x, self.point.y, 0, 7, 5, 1)
+        if self.isalive is True:
+            if self.xdir == self.ST_X_BAKWARD:
+                self.image.clip_draw(self.frame * 64, 0, 64, 64, self.point.x, self.point.y)
+            else:
+                self.image.clip_draw(self.frame * 64, 64, 64, 64, self.point.x, self.point.y)
 
     def update(self):
         self.frametick += 1
@@ -76,10 +74,40 @@ class Ruby(Player):
         self.move()
 
         if self.shottick % self.TICK_SHOT == 0 and self.isshooting is True and self.isalive is True:
+            self.shoot()
             self.shottick = 0
-            return True
 
-        return False
+    def shoot(self):
+        if GameManager.Player_Power < 1:
+            GameManager.p_bullet += [PlayerBullet(0, self.point.x, self.point.y, 0, 0, 5, 0.5)]
+
+        elif 1 <= GameManager.Player_Power < 2:
+            GameManager.p_bullet += [PlayerBullet(0, self.point.x, self.point.y + 5, 1, 0, 5, 0.5),
+                                     PlayerBullet(0, self.point.x, self.point.y - 5, -1, 0, 5, 0.5)]
+
+        elif 2 <= GameManager.Player_Power < 3:
+            GameManager.p_bullet += [
+                PlayerBulletChaser(0, self.point.x, self.point.y, 0, 0, 5, 0.5),
+                PlayerBullet(0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
+                PlayerBullet(0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
+
+        elif 3 <= GameManager.Player_Power < 4:
+            GameManager.p_bullet += [
+                PlayerBulletChaser(0, self.point.x, self.point.y+10, 0, 0, 5, 0.5),
+                PlayerBulletChaser(0, self.point.x, self.point.y-10, 0, 0, 5, 0.5),
+                PlayerBullet(0, self.point.x, self.point.y + 4, 1, 0, 5, 0.5),
+                PlayerBullet(0, self.point.x, self.point.y - 4, -1, 0, 5, 0.5)]
+
+        elif 4 <= GameManager.Player_Power:
+            GameManager.p_bullet += [
+                PlayerBulletChaser(0, self.point.x, self.point.y, random.randint(-3, 3), 0, 5, 0.5),
+                PlayerBulletChaser(0, self.point.x-3, self.point.y + 16, 0, 0, 5, 0.5),
+                PlayerBulletChaser(0, self.point.x-3, self.point.y - 16, 0, 0, 5, 0.5),
+                PlayerBullet(0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
+                PlayerBullet(0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5),
+                PlayerBullet(0, self.point.x, self.point.y + 18, random.randint(-3, 3), 0, 5, 0.5),
+                PlayerBullet(0, self.point.x, self.point.y - 18, random.randint(-3, 3), 0, 5, 0.5)
+            ]
 
     def move(self):
         if self.xdir == self.ST_X_FORWARD:
@@ -91,6 +119,15 @@ class Ruby(Player):
             self.point.y -= self.speed
         elif self.ydir == self.ST_Y_UP:
             self.point.y += self.speed
+
+        if self.point.x < 0:
+            self.point.x = 0
+        if FrameWork.CLIENT_WIDTH < self.point.x:
+            self.point.x = FrameWork.CLIENT_WIDTH
+        if self.point.y < 0:
+            self.point.y = 0
+        if FrameWork.CLIENT_HEIGHT - FrameWork.UI_SIZE < self.point.y + 64:
+            self.point.y = FrameWork.CLIENT_HEIGHT - FrameWork.UI_SIZE - 64
 
     def handle_chara(self, event):
 

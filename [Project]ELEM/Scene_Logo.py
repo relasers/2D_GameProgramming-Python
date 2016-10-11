@@ -23,7 +23,6 @@ def update():
     if logo_time > 1.0 :
         logo_time = 0
         FrameWork.push_state(Scene_Title)
-        close_canvas()
 
     logo_time += 0.01
 

@@ -1,12 +1,11 @@
 from pico2d import *
 import time
 
-open_canvas()
-
 UPDATE_DELAY = 1.0 / 60.0
 
 CLIENT_WIDTH = 1200
 CLIENT_HEIGHT = 800
+UI_SIZE = 100
 
 running = None
 stack = None
