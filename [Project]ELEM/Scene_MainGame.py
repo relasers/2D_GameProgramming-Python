@@ -1,11 +1,11 @@
 from pico2d import *
 import FrameWork
 import GameManager
+from BackGround import *
 from obj_Bullet import *
 from obj_Player import *
 
 name = "MainState"
-
 
 def enter():
     GameManager.buildgame()
@@ -24,9 +24,12 @@ def update():
     for bullets in GameManager.p_bullet:
         if bullets.isout() is True:
             GameManager.p_bullet.remove(bullets)
-
+    GameManager.background.update()
 def draw():
     clear_canvas()
+
+    GameManager.background.draw()
+
     GameManager.Player.draw()
 
     for bullets in GameManager.p_bullet:

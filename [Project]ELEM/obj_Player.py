@@ -124,8 +124,8 @@ class Ruby(Player):
             self.point.x = 0
         if FrameWork.CLIENT_WIDTH < self.point.x:
             self.point.x = FrameWork.CLIENT_WIDTH
-        if self.point.y < 0:
-            self.point.y = 0
+        if self.point.y < 32:
+            self.point.y = 32
         if FrameWork.CLIENT_HEIGHT - FrameWork.UI_SIZE < self.point.y + 64:
             self.point.y = FrameWork.CLIENT_HEIGHT - FrameWork.UI_SIZE - 64
 

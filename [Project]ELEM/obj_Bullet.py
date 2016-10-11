@@ -55,7 +55,7 @@ class PlayerBullet(Bullet):
             Bullet.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
 
     def draw(self):
-        self.spr_player_bullet.opacify(0.3)
+        self.spr_player_bullet.opacify(0.5)
         self.spr_player_bullet.clip_rotate_draw(self.rad, 0, 32, 32, 16, self.point.x, self.point.y)
 
 
@@ -73,7 +73,7 @@ class PlayerBulletChaser(PlayerBullet):
             Bullet.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
 
     def draw(self):
-        self.spr_player_bullet.opacify(0.3)
+        self.spr_player_bullet.opacify(0.5)
         self.spr_player_bullet.clip_rotate_draw(self.rad, 0, 0, 32, 32, self.point.x, self.point.y)
 
     def update(self):

@@ -5,7 +5,7 @@ UPDATE_DELAY = 1.0 / 60.0
 
 CLIENT_WIDTH = 1200
 CLIENT_HEIGHT = 800
-UI_SIZE = 100
+UI_SIZE = 64
 
 running = None
 stack = None
