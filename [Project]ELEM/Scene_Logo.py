@@ -1,6 +1,7 @@
 from pico2d import *
 import FrameWork
 import Scene_Title
+import BackGround
 
 name = "LogoState"
 image = None
@@ -9,6 +10,7 @@ logo_time = 0.0
 def enter():
     global image
     open_canvas(1200, 800)
+    bk = BackGround.BKStage1()
     image = load_image('Resources/Images/BackGrounds/Main/Logo.png')
 
 
