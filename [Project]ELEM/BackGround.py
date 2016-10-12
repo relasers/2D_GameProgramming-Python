@@ -48,49 +48,14 @@ class BKStage1(BackGround):
 
     def draw(self):
 
-        FrameWork.sprite.spr_back_1_5.clip_draw_to_origin(0, 0, FrameWork.CLIENT_WIDTH, FrameWork.CLIENT_HEIGHT, self.x_back_1_5,
-                                                0)
-        if self.x_back_1_5 < FrameWork.CLIENT_WIDTH * 2:
-            FrameWork.sprite.spr_back_1_5.clip_draw_to_origin(
-                0, 0, FrameWork.CLIENT_WIDTH * 2, FrameWork.CLIENT_HEIGHT, self.x_back_1_5 - FrameWork.CLIENT_WIDTH * 2,
-                0)
-
-        FrameWork.sprite.spr_back_1_4.clip_draw_to_origin(
-            0, 0, FrameWork.CLIENT_WIDTH, FrameWork.CLIENT_HEIGHT, self.x_back_1_4, 0)
-        if self.x_back_1_4 < FrameWork.CLIENT_WIDTH * 2:
-            FrameWork.sprite.spr_back_1_4.clip_draw_to_origin(
-                0, 0, FrameWork.CLIENT_WIDTH * 2, FrameWork.CLIENT_HEIGHT, self.x_back_1_4 - FrameWork.CLIENT_WIDTH * 2,
-                0)
-
-        FrameWork.sprite.spr_back_1_3.clip_draw_to_origin(
-                0, 0, FrameWork.CLIENT_WIDTH, FrameWork.CLIENT_HEIGHT, self.x_back_1_3, 0)
-        if self.x_back_1_3 < FrameWork.CLIENT_WIDTH * 2:
-            FrameWork.sprite.spr_back_1_3.clip_draw_to_origin(
-                0, 0, FrameWork.CLIENT_WIDTH * 2, FrameWork.CLIENT_HEIGHT, self.x_back_1_3 - FrameWork.CLIENT_WIDTH * 2,
-                0)
-
-        FrameWork.sprite.spr_back_1_2.clip_draw_to_origin(
-            0, 0, FrameWork.CLIENT_WIDTH, FrameWork.CLIENT_HEIGHT * 2, self.x_back_1_2, -1200)
-        if self.x_back_1_2 < FrameWork.CLIENT_WIDTH:
-            FrameWork.sprite.spr_back_1_2.clip_draw_to_origin(
-                0, 0, FrameWork.CLIENT_WIDTH, FrameWork.CLIENT_HEIGHT * 2, self.x_back_1_2 - FrameWork.CLIENT_WIDTH,
-                -1200)
-
+        self.scrollingBG(FrameWork.sprite.spr_back_1_5, self.x_back_1_5, 0, FrameWork.CLIENT_WIDTH * 2,FrameWork.CLIENT_HEIGHT)
+        self.scrollingBG(FrameWork.sprite.spr_back_1_4, self.x_back_1_4, 0, FrameWork.CLIENT_WIDTH * 2,FrameWork.CLIENT_HEIGHT)
+        self.scrollingBG(FrameWork.sprite.spr_back_1_3, self.x_back_1_3, 0, FrameWork.CLIENT_WIDTH*2,FrameWork.CLIENT_HEIGHT)
+        self.scrollingBG(FrameWork.sprite.spr_back_1_2, self.x_back_1_2, -1200, FrameWork.CLIENT_WIDTH,FrameWork.CLIENT_HEIGHT*2)
         FrameWork.sprite.spr_back_1_1_2.opacify(random.randint(3, 5) / 10)
-        FrameWork.sprite.spr_back_1_1_2.clip_draw_to_origin(
-            0, 0, FrameWork.CLIENT_WIDTH, FrameWork.CLIENT_HEIGHT, self.x_back_1_1_2, 0)
-        if self.x_back_1_1_2 < FrameWork.CLIENT_WIDTH * 2:
-            FrameWork.sprite.spr_back_1_1_2.clip_draw_to_origin(
-                0, 0, FrameWork.CLIENT_WIDTH * 2, FrameWork.CLIENT_HEIGHT,
-                      self.x_back_1_1_2 - FrameWork.CLIENT_WIDTH * 2, 0)
-
+        self.scrollingBG(FrameWork.sprite.spr_back_1_1_2, self.x_back_1_1_2, 0, FrameWork.CLIENT_WIDTH * 2,FrameWork.CLIENT_HEIGHT)
         FrameWork.sprite.spr_back_1_1_3.opacify(random.randint(1, 2) / 10)
-        FrameWork.sprite.spr_back_1_1_3.clip_draw_to_origin(
-            0, 0, FrameWork.CLIENT_WIDTH, FrameWork.CLIENT_HEIGHT, self.x_back_1_1_3, 0)
-        if self.x_back_1_1_3 < FrameWork.CLIENT_WIDTH * 2:
-            FrameWork.sprite.spr_back_1_1_3.clip_draw_to_origin(
-                0, 0, FrameWork.CLIENT_WIDTH * 2, FrameWork.CLIENT_HEIGHT,
-                      self.x_back_1_1_3 - FrameWork.CLIENT_WIDTH * 2, 0)
+        self.scrollingBG(FrameWork.sprite.spr_back_1_1_3, self.x_back_1_1_3, 0, FrameWork.CLIENT_WIDTH*2,FrameWork.CLIENT_HEIGHT)
         self.scrollingBG(FrameWork.sprite.spr_back_1_1,self.x_back_1_1,self.y_back_1_1,FrameWork.CLIENT_WIDTH,FrameWork.CLIENT_HEIGHT*2)
 
 
