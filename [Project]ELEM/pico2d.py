@@ -58,7 +58,7 @@ def open_canvas(w=int(800), h=int(600), sync=False):
 
 
     #SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 0);
-    caption = ('Pico2D Canvas (' + str(w) + 'x' + str(h) + ')' + ' 1000.0 FPS').encode('UTF-8')
+    caption = ('ELEM (' + str(w) + 'x' + str(h) + ')' + ' 1000.0 FPS').encode('UTF-8')
     #window = SDL_CreateWindow(caption, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, SDL_WINDOW_SHOWN)
     window = SDL_CreateWindow(caption, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, SDL_WINDOW_SHOWN)
     if sync:
@@ -101,15 +101,15 @@ def close_canvas():
     SDL_Quit()
 
 def clear_canvas():
-    SDL_SetRenderDrawColor(renderer, 200, 200, 210, 255)
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255)
     SDL_RenderClear(renderer)
     if lattice_on:
-        SDL_SetRenderDrawColor(renderer, 180, 180, 180, 255)
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255)
         for x in range(0, canvas_width, 10):
             SDL_RenderDrawLine(renderer, x, 0, x, canvas_height)
         for y in range(canvas_height-1, 0, -10):
             SDL_RenderDrawLine(renderer, 0, y, canvas_width, y)
-        SDL_SetRenderDrawColor(renderer, 160, 160, 160, 255)
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255)
 
         for x in range(0, canvas_width, 100):
             SDL_RenderDrawLine(renderer, x, 0, x, canvas_height)
@@ -140,7 +140,7 @@ def print_fps():
     dt = get_time() - cur_time
     cur_time += dt
     dt = max(dt, 0.0001)
-    caption = ('Pico2D Canvas (' + str(canvas_width) + 'x' + str(canvas_height) + ')' + ' %4.2f FPS' % (1.0/dt)).encode('UTF-8')
+    caption = ('ELEM (' + str(canvas_width) + 'x' + str(canvas_height) + ')' + ' %4.2f FPS' % (1.0/dt)).encode('UTF-8')
     SDL_SetWindowTitle(window, caption)
 
 

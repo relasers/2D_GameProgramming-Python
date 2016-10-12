@@ -1,6 +1,8 @@
 from vector2D import *
 from pico2d import *
 from obj_Bullet import *
+from RES import *
+import FrameWork
 import GameManager
 import random
 import math
@@ -19,7 +21,6 @@ class Player:
 
 
 class Ruby(Player):
-    image = None
 
     def __init__(self, point_x, point_y):
         self.point = Vec2D(point_x, point_y)
@@ -38,9 +39,6 @@ class Ruby(Player):
         self.speed = self.HIGH_SPEED
         self.slowmode = False
 
-        if Ruby.image is None:
-            Ruby.image = load_image('Resources/images/Characters/Ally/Ruby_set.png')
-
         self.hit = 3
         self.isshooting = False
         self.isalive = True
@@ -48,9 +46,9 @@ class Ruby(Player):
     def draw(self):
         if self.isalive is True:
             if self.xdir == self.ST_X_BAKWARD:
-                self.image.clip_draw(self.frame * 64, 0, 64, 64, self.point.x, self.point.y)
+                FrameWork.sprite.spr_ruby.clip_draw(self.frame * 64, 0, 64, 64, self.point.x, self.point.y)
             else:
-                self.image.clip_draw(self.frame * 64, 64, 64, 64, self.point.x, self.point.y)
+                FrameWork.sprite.spr_ruby.clip_draw(self.frame * 64, 64, 64, 64, self.point.x, self.point.y)
 
     def update(self):
         self.frametick += 1

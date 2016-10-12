@@ -13,8 +13,6 @@ class Bullet:
     SpeedRate = 0
     rad = 0
 
-    spr_player_bullet = None
-
     def __init__(self, spriteid, x, y, angle, anglerate, speed, speedrate):
         self.SpriteID = spriteid
         self.point = Vec2D(x, y)
@@ -23,11 +21,8 @@ class Bullet:
         self.Speed = speed
         self.SpeedRate = speedrate
 
-        if Bullet.spr_player_bullet is None:
-            Bullet.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
-
     def update(self):
-        self.rad = self.Angle*math.pi/180
+        self.rad = self.Angle * math.pi / 180
 
         self.point.x += self.Speed * math.cos(self.rad)
         self.point.y += self.Speed * math.sin(self.rad)
@@ -42,7 +37,6 @@ class Bullet:
 
 
 class PlayerBullet(Bullet):
-
     def __init__(self, spriteid, x, y, angle, anglerate, speed, speedrate):
         self.SpriteID = spriteid
         self.point = Vec2D(x, y)
@@ -51,16 +45,12 @@ class PlayerBullet(Bullet):
         self.Speed = speed
         self.SpeedRate = speedrate
 
-        if Bullet.spr_player_bullet is None:
-            Bullet.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
-
     def draw(self):
-        self.spr_player_bullet.opacify(0.5)
-        self.spr_player_bullet.clip_rotate_draw(self.rad, 0, 32, 32, 16, self.point.x, self.point.y)
+        FrameWork.sprite.spr_player_bullet.opacify(0.5)
+        FrameWork.sprite.spr_player_bullet.clip_rotate_draw(self.rad, 0, 32, 32, 16, self.point.x, self.point.y)
 
 
 class PlayerBulletChaser(PlayerBullet):
-
     def __init__(self, spriteid, x, y, angle, anglerate, speed, speedrate):
         self.SpriteID = spriteid
         self.point = Vec2D(x, y)
@@ -69,16 +59,13 @@ class PlayerBulletChaser(PlayerBullet):
         self.Speed = speed
         self.SpeedRate = speedrate
 
-        if Bullet.spr_player_bullet is None:
-            Bullet.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
-
     def draw(self):
-        self.spr_player_bullet.opacify(0.5)
-        self.spr_player_bullet.clip_rotate_draw(self.rad, 0, 0, 32, 32, self.point.x, self.point.y)
+        FrameWork.sprite.spr_player_bullet.opacify(0.5)
+        FrameWork.sprite.spr_player_bullet.clip_rotate_draw(self.rad, 0, 0, 32, 32, self.point.x, self.point.y)
 
     def update(self):
         if len(GameManager.enemy) is 0:
-            self.rad = self.Angle*math.pi/180
+            self.rad = self.Angle * math.pi / 180
 
             self.point.x += self.Speed * math.cos(self.rad)
             self.point.y += self.Speed * math.sin(self.rad)
@@ -90,4 +77,4 @@ class PlayerBulletChaser(PlayerBullet):
             self.target += self.point
             self.target -= GameManager.enemy[0].point
             self.target._normalize()
-            self.point += self.target*self.speed
+            self.point += self.target * self.speed

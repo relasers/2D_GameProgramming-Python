@@ -1,23 +1,23 @@
 from pico2d import *
 import FrameWork
 import Scene_Title
-import BackGround
-
+import RES
 name = "LogoState"
 image = None
 logo_time = 0.0
 
 def enter():
     global image
-    open_canvas(1200, 800)
-    bk = BackGround.BKStage1()
+    FrameWork.sprite = RES.Res()
     image = load_image('Resources/Images/BackGrounds/Main/Logo.png')
+    pass
 
 
 def exit():
     global image
     del(image)
     close_canvas()
+    pass
 
 def update():
     global logo_time
@@ -27,12 +27,14 @@ def update():
         FrameWork.push_state(Scene_Title)
 
     logo_time += 0.01
+    pass
 
 def draw():
     global image
     clear_canvas()
     image.draw(600, 400)
     update_canvas()
+    pass
 
 def handle_events():
     events = get_events()

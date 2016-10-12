@@ -8,11 +8,14 @@ from obj_Player import *
 name = "MainState"
 
 def enter():
+    # open_canvas(FrameWork.CLIENT_WIDTH,FrameWork.CLIENT_HEIGHT)
     GameManager.buildgame()
+    pass
 
 
 def exit():
     close_canvas()
+    pass
 
 
 def update():
@@ -25,6 +28,9 @@ def update():
         if bullets.isout() is True:
             GameManager.p_bullet.remove(bullets)
     GameManager.background.update()
+    pass
+
+
 def draw():
     clear_canvas()
 
@@ -36,6 +42,7 @@ def draw():
         bullets.draw()
 
     update_canvas()
+    pass
 
 
 def handle_events():
@@ -51,6 +58,7 @@ def handle_events():
             GameManager.background.switch_uptosky = True
         else:
             GameManager.Player.handle_chara(event)
+        pass
 
 def pause():
     pass
