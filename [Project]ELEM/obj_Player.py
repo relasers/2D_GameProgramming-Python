@@ -1,9 +1,8 @@
 from vector2D import *
 from pico2d import *
 from obj_Bullet import *
-from RES import *
-import FrameWork
 import GameManager
+import RES
 import random
 import math
 
@@ -46,9 +45,9 @@ class Ruby(Player):
     def draw(self):
         if self.isalive is True:
             if self.xdir == self.ST_X_BAKWARD:
-                FrameWork.sprite.spr_ruby.clip_draw(self.frame * 64, 0, 64, 64, self.point.x, self.point.y)
+                RES.res.spr_ruby.clip_draw(self.frame * 64, 0, 64, 64, self.point.x, self.point.y)
             else:
-                FrameWork.sprite.spr_ruby.clip_draw(self.frame * 64, 64, 64, 64, self.point.x, self.point.y)
+                RES.res.spr_ruby.clip_draw(self.frame * 64, 64, 64, 64, self.point.x, self.point.y)
 
     def update(self):
         self.frametick += 1
@@ -91,20 +90,22 @@ class Ruby(Player):
 
         elif 3 <= GameManager.Player_Power < 4:
             GameManager.p_bullet += [
-                PlayerBulletChaser(0, self.point.x, self.point.y+10, 0, 0, 5, 0.5),
-                PlayerBulletChaser(0, self.point.x, self.point.y-10, 0, 0, 5, 0.5),
-                PlayerBullet(0, self.point.x, self.point.y + 4, 1, 0, 5, 0.5),
-                PlayerBullet(0, self.point.x, self.point.y - 4, -1, 0, 5, 0.5)]
+                PlayerBulletChaser(0, self.point.x, self.point.y+10, 3, 0, 5, 0.5),
+                PlayerBulletChaser(0, self.point.x, self.point.y-10, -3, 0, 5, 0.5),
+                PlayerBullet(0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
+                PlayerBullet(0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
 
         elif 4 <= GameManager.Player_Power:
-            GameManager.p_bullet += [
-                PlayerBulletChaser(0, self.point.x, self.point.y, random.randint(-3, 3), 0, 5, 0.5),
-                PlayerBulletChaser(0, self.point.x-3, self.point.y + 16, 0, 0, 5, 0.5),
-                PlayerBulletChaser(0, self.point.x-3, self.point.y - 16, 0, 0, 5, 0.5),
-                PlayerBullet(0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
-                PlayerBullet(0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5),
-                PlayerBullet(0, self.point.x, self.point.y + 18, random.randint(-3, 3), 0, 5, 0.5),
-                PlayerBullet(0, self.point.x, self.point.y - 18, random.randint(-3, 3), 0, 5, 0.5)
+            GameManager. p_bullet += [
+                PlayerBulletChaser(0, self.point.x, self.point.y, random.randint(-5, 5), 0, 5, 0.5),
+                PlayerBulletChaser(0, self.point.x-3, self.point.y + 16, 3, 0, 5, 0.5),
+                PlayerBulletChaser(0, self.point.x-3, self.point.y - 16, -3, 0, 5, 0.5),
+                PlayerBullet(1, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
+                PlayerBullet(1, self.point.x, self.point.y - 6, -1, 0, 5, 0.5),
+                PlayerBullet(1, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
+                PlayerBullet(1, self.point.x, self.point.y - 18, random.randint(-5, 5), 0, 5, 0.5),
+                PlayerBullet(1, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
+                PlayerBullet(1, self.point.x, self.point.y - 18, random.randint(-5, 5), 0, 5, 0.5)
             ]
 
     def move(self):
@@ -120,12 +121,12 @@ class Ruby(Player):
 
         if self.point.x < 0:
             self.point.x = 0
-        if FrameWork.CLIENT_WIDTH < self.point.x:
-            self.point.x = FrameWork.CLIENT_WIDTH
+        if GameManager.CLIENT_WIDTH < self.point.x:
+            self.point.x = GameManager.CLIENT_WIDTH
         if self.point.y < 32:
             self.point.y = 32
-        if FrameWork.CLIENT_HEIGHT - FrameWork.UI_SIZE < self.point.y + 64:
-            self.point.y = FrameWork.CLIENT_HEIGHT - FrameWork.UI_SIZE - 64
+        if GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE < self.point.y + 64:
+            self.point.y = GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE - 64
 
     def handle_chara(self, event):
 

@@ -1,12 +1,13 @@
 from vector2D import *
 from pico2d import *
+import RES
 import GameManager
-import FrameWork
 import math
 
 
 class Bullet:
     SpriteID = None
+    Size = 0
     Angle = 0
     AngleRate = 0
     Speed = 0
@@ -32,13 +33,14 @@ class Bullet:
 
     # Check Bullet Out of Client
     def isout(self):
-        if FrameWork.CLIENT_WIDTH < self.point.x or self.point.x < 0 or FrameWork.CLIENT_HEIGHT < self.point.y or self.point.y < 0:
+        if GameManager.CLIENT_WIDTH < self.point.x - self.Size or self.point.x + self.Size < 0 or GameManager.CLIENT_HEIGHT < self.point.y - self.Size or self.point.y + self.Size < 0:
             return True
 
 
 class PlayerBullet(Bullet):
     def __init__(self, spriteid, x, y, angle, anglerate, speed, speedrate):
         self.SpriteID = spriteid
+        self.Size = 32
         self.point = Vec2D(x, y)
         self.Angle = angle
         self.AngleRate = anglerate
@@ -46,8 +48,11 @@ class PlayerBullet(Bullet):
         self.SpeedRate = speedrate
 
     def draw(self):
-        FrameWork.sprite.spr_player_bullet.opacify(0.5)
-        FrameWork.sprite.spr_player_bullet.clip_rotate_draw(self.rad, 0, 32, 32, 16, self.point.x, self.point.y)
+        RES.res.spr_player_bullet.opacify(0.5)
+        if self.SpriteID == 0:
+            RES.res.spr_player_bullet.clip_rotate_draw(self.rad, 0, 32, 32, 16, self.point.x, self.point.y)
+        elif self.SpriteID == 1:
+            RES.res.spr_player_bullet.clip_rotate_draw(self.rad, 0, 48, 32, 16, self.point.x, self.point.y)
 
 
 class PlayerBulletChaser(PlayerBullet):
@@ -60,8 +65,8 @@ class PlayerBulletChaser(PlayerBullet):
         self.SpeedRate = speedrate
 
     def draw(self):
-        FrameWork.sprite.spr_player_bullet.opacify(0.5)
-        FrameWork.sprite.spr_player_bullet.clip_rotate_draw(self.rad, 0, 0, 32, 32, self.point.x, self.point.y)
+        RES.res.spr_player_bullet.opacify(0.5)
+        RES.res.spr_player_bullet.clip_rotate_draw(self.rad, 0, 0, 32, 32, self.point.x, self.point.y)
 
     def update(self):
         if len(GameManager.enemy) is 0:
@@ -77,4 +82,4 @@ class PlayerBulletChaser(PlayerBullet):
             self.target += self.point
             self.target -= GameManager.enemy[0].point
             self.target._normalize()
-            self.point += self.target * self.speed
+            self.point += self.target * self.Speed

@@ -55,7 +55,7 @@ def handle_events():
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_q):
             GameManager.Player_Power += 1
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
-            GameManager.background.switch_uptosky = True
+            GameManager.background.state = (GameManager.background.state + 1 ) % 4
         else:
             GameManager.Player.handle_chara(event)
         pass

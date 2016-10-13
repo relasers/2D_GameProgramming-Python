@@ -1,16 +1,10 @@
-from pico2d import *
-from RES import *
 import time
 
 UPDATE_DELAY = 1.0 / 60.0
 
-CLIENT_WIDTH = 1200
-CLIENT_HEIGHT = 800
-UI_SIZE = 64
-
 running = None
 stack = None
-sprite = None
+
 
 class GameState:
     def __init__(self, state):
@@ -21,6 +15,7 @@ class GameState:
         self.handle_events = state.handle_events
         self.update = state.update
         self.draw = state.draw
+
 
 def change_stage(state):
     global stack
