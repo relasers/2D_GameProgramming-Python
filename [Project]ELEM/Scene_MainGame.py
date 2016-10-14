@@ -23,8 +23,12 @@ def exit():
 def update():
     global time
     time += 1
-    if time > 10:
-        GameManager.enemy += [Enemy64(random.randint(0,6),GameManager.CLIENT_WIDTH,random.randint(0,GameManager.CLIENT_HEIGHT-GameManager.UI_SIZE),180,0,5,0)  ]
+    if time > 100:
+        GameManager.enemy += [
+            Enemy64(2, GameManager.CLIENT_WIDTH,random.randint(0,GameManager.CLIENT_HEIGHT-GameManager.UI_SIZE),180,0,20,-0.25),
+            Enemy_spiral(3, GameManager.CLIENT_WIDTH,
+                    random.randint(0, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE), 180, 0, 10, -0.1)
+        ]
         time = 0
     GameManager.Player.update()
 

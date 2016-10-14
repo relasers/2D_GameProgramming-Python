@@ -5,7 +5,7 @@ from BackGround import *
 
 CLIENT_WIDTH = 1200
 CLIENT_HEIGHT = 800
-UI_SIZE = 64
+UI_SIZE = 48
 
 CollisionBox = False
 

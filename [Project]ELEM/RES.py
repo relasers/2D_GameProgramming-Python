@@ -41,7 +41,7 @@ class Res:
 
     def __init__(self):
 
-        self.font_elem = Font('Resources/Fonts/chemrea.ttf',30)
+        self.font_elem = Font('Resources/Fonts/tennobet.ttf',30)
         self.spr_ruby = load_image('Resources/images/Characters/Ally/Ruby_set.png')
 
         self.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')

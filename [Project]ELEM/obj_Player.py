@@ -95,22 +95,22 @@ class Ruby(Player):
 
         elif 2 <= GameManager.Player_Power < 3:
             GameManager.p_bullet += [
-                PlayerBulletChaser(0, 0, self.point.x, self.point.y, chaseangle, 0, 5, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x, self.point.y, chaseangle, 0, 7, 0.5),
                 PlayerBullet(0, 0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
                 PlayerBullet(0, 0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
 
         elif 3 <= GameManager.Player_Power < 4:
             GameManager.p_bullet += [
-                PlayerBulletChaser(0, 0, self.point.x, self.point.y+10, 3+chaseangle, 0, 5, 0.5),
-                PlayerBulletChaser(0, 0, self.point.x, self.point.y-10, -3+chaseangle, 0, 5, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x, self.point.y+10, 3+chaseangle, 0, 7, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x, self.point.y-10, -3+chaseangle, 0, 7, 0.5),
                 PlayerBullet(0, 0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
                 PlayerBullet(0, 0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
 
         elif 4 <= GameManager.Player_Power:
             GameManager. p_bullet += [
-                PlayerBulletChaser(0, 0, self.point.x, self.point.y, random.randint(-5, 5)+chaseangle, 0, 5, 0.5),
-                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y + 16, 3+chaseangle, 0, 5, 0.5),
-                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y - 16, -3+chaseangle, 0, 5, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x, self.point.y, random.randint(-5, 5)+chaseangle, 0, 7, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y + 16, 3+chaseangle, 0, 7, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y - 16, -3+chaseangle, 0, 7, 0.5),
                 PlayerBullet(1, 1, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
                 PlayerBullet(1, 1, self.point.x, self.point.y - 6, -1, 0, 5, 0.5),
                 PlayerBullet(1, 1, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
