@@ -7,7 +7,7 @@ import random
 import math
 
 
-class Player:
+class Player(Actor):
     ST_X_NONE, ST_X_FORWARD, ST_X_BAKWARD = 0, 1, 2
     ST_Y_NONE, ST_Y_UP, ST_Y_DOWN = 3, 4, 5
 
@@ -16,6 +16,9 @@ class Player:
 
     TICK_FRAME = 5
     TICK_SHOT = 5
+
+    HIT = 4
+
     pass
 
 
@@ -38,7 +41,6 @@ class Ruby(Player):
         self.speed = self.HIGH_SPEED
         self.slowmode = False
 
-        self.hit = 3
         self.isshooting = False
         self.isalive = True
 
@@ -48,6 +50,9 @@ class Ruby(Player):
                 RES.res.spr_ruby.clip_draw(self.frame * 64, 0, 64, 64, self.point.x, self.point.y)
             else:
                 RES.res.spr_ruby.clip_draw(self.frame * 64, 64, 64, 64, self.point.x, self.point.y)
+
+                drawhitbox(self.point, self.HIT)
+
 
     def update(self):
         self.frametick += 1
@@ -75,37 +80,43 @@ class Ruby(Player):
             self.shottick = 0
 
     def shoot(self):
+        chaseangle = 0
+        if len(GameManager.enemy) != 0:
+            chaseangle = calcangle(self.point.x,self.point.y,
+                              GameManager.enemy[0].point.x,GameManager.enemy[0].point.y)
+
+
         if GameManager.Player_Power < 1:
-            GameManager.p_bullet += [PlayerBullet(0, self.point.x, self.point.y, 0, 0, 5, 0.5)]
+            GameManager.p_bullet += [PlayerBullet(0, 0, self.point.x, self.point.y, 0, 0, 5, 0.5)]
 
         elif 1 <= GameManager.Player_Power < 2:
-            GameManager.p_bullet += [PlayerBullet(0, self.point.x, self.point.y + 5, 1, 0, 5, 0.5),
-                                     PlayerBullet(0, self.point.x, self.point.y - 5, -1, 0, 5, 0.5)]
+            GameManager.p_bullet += [PlayerBullet(0, 0, self.point.x, self.point.y + 5, 1, 0, 5, 0.5),
+                                     PlayerBullet(0, 0, self.point.x, self.point.y - 5, -1, 0, 5, 0.5)]
 
         elif 2 <= GameManager.Player_Power < 3:
             GameManager.p_bullet += [
-                PlayerBulletChaser(0, self.point.x, self.point.y, 0, 0, 5, 0.5),
-                PlayerBullet(0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
-                PlayerBullet(0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
+                PlayerBulletChaser(0, 0, self.point.x, self.point.y, chaseangle, 0, 5, 0.5),
+                PlayerBullet(0, 0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
+                PlayerBullet(0, 0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
 
         elif 3 <= GameManager.Player_Power < 4:
             GameManager.p_bullet += [
-                PlayerBulletChaser(0, self.point.x, self.point.y+10, 3, 0, 5, 0.5),
-                PlayerBulletChaser(0, self.point.x, self.point.y-10, -3, 0, 5, 0.5),
-                PlayerBullet(0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
-                PlayerBullet(0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
+                PlayerBulletChaser(0, 0, self.point.x, self.point.y+10, 3+chaseangle, 0, 5, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x, self.point.y-10, -3+chaseangle, 0, 5, 0.5),
+                PlayerBullet(0, 0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
+                PlayerBullet(0, 0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
 
         elif 4 <= GameManager.Player_Power:
             GameManager. p_bullet += [
-                PlayerBulletChaser(0, self.point.x, self.point.y, random.randint(-5, 5), 0, 5, 0.5),
-                PlayerBulletChaser(0, self.point.x-3, self.point.y + 16, 3, 0, 5, 0.5),
-                PlayerBulletChaser(0, self.point.x-3, self.point.y - 16, -3, 0, 5, 0.5),
-                PlayerBullet(1, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
-                PlayerBullet(1, self.point.x, self.point.y - 6, -1, 0, 5, 0.5),
-                PlayerBullet(1, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
-                PlayerBullet(1, self.point.x, self.point.y - 18, random.randint(-5, 5), 0, 5, 0.5),
-                PlayerBullet(1, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
-                PlayerBullet(1, self.point.x, self.point.y - 18, random.randint(-5, 5), 0, 5, 0.5)
+                PlayerBulletChaser(0, 0, self.point.x, self.point.y, random.randint(-5, 5)+chaseangle, 0, 5, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y + 16, 3+chaseangle, 0, 5, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y - 16, -3+chaseangle, 0, 5, 0.5),
+                PlayerBullet(1, 1, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
+                PlayerBullet(1, 1, self.point.x, self.point.y - 6, -1, 0, 5, 0.5),
+                PlayerBullet(1, 1, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
+                PlayerBullet(1, 1, self.point.x, self.point.y - 18, random.randint(-5, 5), 0, 5, 0.5),
+                PlayerBullet(1, 1, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
+                PlayerBullet(1, 1, self.point.x, self.point.y - 18, random.randint(-5, 5), 0, 5, 0.5)
             ]
 
     def move(self):

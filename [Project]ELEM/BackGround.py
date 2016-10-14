@@ -18,7 +18,7 @@ class BKStage1(BackGround):
         self.switch_boss = False
         self.spd_back_1_1 = 1
         self.y_spd_back_1_1 = 20
-        self.y_spdr_back_1_1 = 0.14
+        self.y_spdr_back_1_1 = 0.14 # BackGrond 1's SpeedRate
 
         self.spd_back_1_2 = 14
         self.spd_back_1_3 = 12
@@ -78,7 +78,7 @@ class BKStage1(BackGround):
         self.scrollingBG(RES.res.spr_back_1_5, self.x_back_1_5, 0, GameManager.CLIENT_WIDTH*2,GameManager.CLIENT_HEIGHT)
         self.scrollingBG(RES.res.spr_back_1_4, self.x_back_1_4, -1200, GameManager.CLIENT_WIDTH,GameManager.CLIENT_HEIGHT*2)
         if self.switch_boss is True:
-            RES.res.spr_back_1_2.opacify(random.randint(3, 5) / 10)
+            RES.res.spr_back_1_2.opacify(random.randint(0, 1) / 10)
             self.scrollingBG(RES.res.spr_back_1_2, self.x_back_1_2, 0, GameManager.CLIENT_WIDTH * 2,GameManager.CLIENT_HEIGHT)
             RES.res.spr_back_1_3.opacify(random.randint(1, 2) / 10)
             self.scrollingBG(RES.res.spr_back_1_3, self.x_back_1_3, 0, GameManager.CLIENT_WIDTH*2,GameManager.CLIENT_HEIGHT)

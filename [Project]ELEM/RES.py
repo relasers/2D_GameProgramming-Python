@@ -8,10 +8,17 @@ def loading_data():
     res = Res()
 
 
+
 class Res:
 
+    font_elem = None
+
     spr_ruby = None
+
     spr_player_bullet = None
+    spr_bullet32 = None
+
+    spr_enemy64 = None
 
     spr_back_1_1 = None
     spr_back_1_2 = None
@@ -34,8 +41,13 @@ class Res:
 
     def __init__(self):
 
+        self.font_elem = Font('Resources/Fonts/chemrea.ttf',30)
         self.spr_ruby = load_image('Resources/images/Characters/Ally/Ruby_set.png')
+
         self.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
+        self.spr_bullet32 = load_image('Resources/Images/Bullets/Bullet32.png')
+        self.spr_enemy64 = load_image('Resources/Images/Characters/Enemy\enemy_64.png')
+
         self.spr_back_1_1 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_1.png')
         self.spr_back_1_2 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_1_2.png')
         self.spr_back_1_3 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_1_3.png')
