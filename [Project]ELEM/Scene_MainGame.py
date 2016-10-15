@@ -5,10 +5,10 @@ from BackGround import *
 from obj_Bullet import *
 from obj_Player import *
 from obj_enemy import *
+from Timer import *
 import random
 
 name = "MainState"
-time = 0
 def enter():
     # open_canvas(FrameWork.CLIENT_WIDTH,FrameWork.CLIENT_HEIGHT)
     GameManager.buildgame()
@@ -21,15 +21,7 @@ def exit():
 
 
 def update():
-    global time
-    time += 1
-    if time > 100:
-        GameManager.enemy += [
-            Enemy64(2, GameManager.CLIENT_WIDTH,random.randint(0,GameManager.CLIENT_HEIGHT-GameManager.UI_SIZE),180,0,20,-0.25),
-            Enemy_spiral(3, GameManager.CLIENT_WIDTH,
-                    random.randint(0, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE), 180, 0, 10, -0.1)
-        ]
-        time = 0
+    GameManager.timer.update()
     GameManager.Player.update()
 
     for bullets in GameManager.p_bullet:
@@ -39,27 +31,29 @@ def update():
     for enemys in GameManager.enemy:
         enemys.update()
 
-
     for bullets in GameManager.p_bullet:
         for enemys in GameManager.enemy:
             if bullets.isHit(enemys) is True and bullets.iscollisioned is False:
                 enemys.HP -= bullets.Damage
-                GameManager.p_bullet.remove(bullets)
+                bullets.iscollisioned = True
 
 
     for bullets in GameManager.e_bullet:
         if bullets.isHit(GameManager.Player) is True:
             GameManager.e_bullet.remove(bullets)
 
-    for enemys in GameManager.enemy:
-        if enemys.isDestroy() is True:
-            GameManager.enemy.remove(enemys)
+
     for bullets in GameManager.p_bullet:
         if bullets.isDestroy() is True:
             GameManager.p_bullet.remove(bullets)
     for bullets in GameManager.e_bullet:
         if bullets.isDestroy() is True:
             GameManager.e_bullet.remove(bullets)
+    for enemys in GameManager.enemy:
+        if enemys.isDestroy() is True:
+            if enemys.HP < 0:
+                RES.res.snd_destroy.play()
+            GameManager.enemy.remove(enemys)
 
     GameManager.background.update()
     pass
@@ -67,8 +61,6 @@ def update():
 
 def draw():
     clear_canvas()
-
-
 
     GameManager.background.draw()
 

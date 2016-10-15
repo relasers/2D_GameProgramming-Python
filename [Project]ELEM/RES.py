@@ -39,9 +39,15 @@ class Res:
     spr_back_2_5_d = None
     spr_back_2_5_n = None
 
+    snd_back_1 = None
+
+    snd_shoot = None
+    snd_e_shoot = None
+    snd_destroy = None
     def __init__(self):
 
-        self.font_elem = Font('Resources/Fonts/tennobet.ttf',30)
+        # self.font_elem = Font('Resources/Fonts/tennobet.ttf',30)
+        self.font_elem = Font('Resources/Fonts/chemrea.ttf', 30)
         self.spr_ruby = load_image('Resources/images/Characters/Ally/Ruby_set.png')
 
         self.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
@@ -67,6 +73,16 @@ class Res:
         self.spr_back_2_5_d = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_4_day.png')
         self.spr_back_2_5_n = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_4_night.png')
 
+        self.snd_back_1 = load_music('Resources/Sounds/BGM/Fable-Mili.ogg')
+
+        self.snd_shoot = load_wav('Resources/Sounds/SE/plst00.wav')
+        self.snd_shoot.set_volume(10)
+
+        self.snd_e_shoot = load_wav('Resources/Sounds/SE/tan01.wav')
+        self.snd_e_shoot.set_volume(1)
+
+        self.snd_destroy = load_wav('Resources/Sounds/SE/tan00.wav')
+        self.snd_destroy.set_volume(20)
 
 
 
@@ -74,4 +90,4 @@ class Res:
 
 
 
-# Resource
+        # Resource

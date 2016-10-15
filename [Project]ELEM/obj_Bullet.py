@@ -78,7 +78,8 @@ class PlayerBulletChaser(PlayerBullet):
         drawhitbox(self.point, self.HIT)
 
 ########################################################################################################################
-
+class PlayerBomb(PlayerBullet):
+    pass
 
 class EnemyBullet(Bullet):
     def draw(self):

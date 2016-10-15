@@ -2,6 +2,7 @@ from pico2d import *
 from obj_Bullet import *
 from obj_Player import *
 from BackGround import *
+from Timer import *
 
 CLIENT_WIDTH = 1200
 CLIENT_HEIGHT = 800
@@ -11,6 +12,7 @@ CollisionBox = False
 
 Player = None
 background = None
+timer = None
 p_bullet = []
 e_bullet = []
 enemy = []
@@ -26,9 +28,11 @@ def buildgame():
     global live
     global Player_Power
     global background
+    global timer
 
     Player = Ruby(600, 600)
     background = BKStage1()
+    timer = T_Stage1()
     p_bullet = []
     e_bullet = []
     enemy = []

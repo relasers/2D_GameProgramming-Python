@@ -11,7 +11,7 @@ from sdl2.sdlmixer import *
 
 
 lattice_on = True
-audio_on = False
+audio_on = True
 
 
 def clamp(minimum, x, maximum):

@@ -81,6 +81,8 @@ class Ruby(Player):
 
     def shoot(self):
         chaseangle = 0
+
+        RES.res.snd_shoot.play()
         if len(GameManager.enemy) != 0:
             chaseangle = calcangle(self.point.x,self.point.y,
                               GameManager.enemy[0].point.x,GameManager.enemy[0].point.y)

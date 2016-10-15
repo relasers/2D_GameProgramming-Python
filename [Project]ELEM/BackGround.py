@@ -12,13 +12,14 @@ class BackGround:
 class BKStage1(BackGround):
 
     PHASE1, PHASE2, PHASE3, PHASE4 = 0, 1, 2, 3
-
+    Timer = 0
     def __init__(self):
+        self.Timer = 0
         self.state = self.PHASE1
         self.switch_boss = False
         self.spd_back_1_1 = 1
-        self.y_spd_back_1_1 = 20
-        self.y_spdr_back_1_1 = 0.14 # BackGrond 1's SpeedRate
+        self.y_spd_back_1_1 = 40
+        self.y_spdr_back_1_1 = 0.55 # BackGrond 1's SpeedRate
 
         self.spd_back_1_2 = 14
         self.spd_back_1_3 = 12
@@ -63,6 +64,10 @@ class BKStage1(BackGround):
     }
 
     def update(self):
+        if self.Timer == 0:
+            RES.res.snd_back_1.set_volume(100)
+            RES.res.snd_back_1.play()
+        self.Timer += 1
         self.x_back_1_1 = (self.x_back_1_1 - self.spd_back_1_1) % GameManager.CLIENT_WIDTH
         self.x_back_1_2 = (self.x_back_1_2 - self.spd_back_1_2) % (GameManager.CLIENT_WIDTH * 2)
         self.x_back_1_3 = (self.x_back_1_3 - self.spd_back_1_3) % (GameManager.CLIENT_WIDTH * 2)
@@ -71,6 +76,12 @@ class BKStage1(BackGround):
         self.x_back_1_6 = (self.x_back_1_6 - self.spd_back_1_6) % (GameManager.CLIENT_WIDTH * 2)
         self.x_back_1_7 = (self.x_back_1_7 - self.spd_back_1_7) % (GameManager.CLIENT_WIDTH * 2)
         self.handle_state[self.state](self)
+
+        if self.Timer == 2380:
+            self.state += 1
+        if self.Timer == 3200:
+            self.state += 1
+
 
     def draw(self):
         self.scrollingBG(RES.res.spr_back_1_7, self.x_back_1_7, 0, GameManager.CLIENT_WIDTH * 2,GameManager.CLIENT_HEIGHT)
@@ -84,7 +95,7 @@ class BKStage1(BackGround):
             self.scrollingBG(RES.res.spr_back_1_3, self.x_back_1_3, 0, GameManager.CLIENT_WIDTH*2,GameManager.CLIENT_HEIGHT)
         self.scrollingBG(RES.res.spr_back_1_1,self.x_back_1_1,self.y_back_1_1,GameManager.CLIENT_WIDTH,GameManager.CLIENT_HEIGHT*2)
 
-
+        RES.res.font_elem.draw(300, 780, " Timer :: %s " % self.Timer, (255, 0, 255))
     def scrollingBG(self,img,x,y,width,height):
         img.clip_draw_to_origin(0, 0, width, height, x, y)
         if x < width:
