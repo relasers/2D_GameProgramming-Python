@@ -18,7 +18,7 @@ class Bullet(Actor):
     iscollisioned = False
     HIT = 4
 
-    def __init__(self, spriteid, spritecolor, x, y, angle, anglerate, speed, speedrate, size = int(32)):
+    def __init__(self, spriteid, spritecolor, x, y, angle, anglerate, speed, speedrate, size=int(32)):
         self.SpriteID = spriteid
         self.SpriteColor = spritecolor
         self.point = Vec2D(x, y)
@@ -53,9 +53,11 @@ class PlayerBullet(Bullet):
     def draw(self):
         RES.res.spr_player_bullet.opacify(0.7)
         if self.SpriteColor == 0:
-            RES.res.spr_player_bullet.clip_rotate_draw(self.rad, 0, 32, 32, 16, self.point.x, self.point.y,self.Size,self.Size)
+            RES.res.spr_player_bullet.clip_rotate_draw(self.rad, 0, 32, 32, 16, self.point.x, self.point.y, self.Size,
+                                                       self.Size)
         elif self.SpriteColor == 1:
-            RES.res.spr_player_bullet.clip_rotate_draw(self.rad, 0, 48, 32, 16, self.point.x, self.point.y,self.Size,self.Size)
+            RES.res.spr_player_bullet.clip_rotate_draw(self.rad, 0, 48, 32, 16, self.point.x, self.point.y, self.Size,
+                                                       self.Size)
         drawhitbox(self.point, self.HIT)
 
 
@@ -74,15 +76,50 @@ class PlayerBulletChaser(PlayerBullet):
 
     def draw(self):
         RES.res.spr_player_bullet.opacify(0.7)
-        RES.res.spr_player_bullet.clip_rotate_draw(self.rad, 0, 0, 32, 32, self.point.x, self.point.y,self.Size,self.Size)
+        RES.res.spr_player_bullet.clip_rotate_draw(self.rad, 0, 0, 32, 32, self.point.x, self.point.y, self.Size,
+                                                   self.Size)
         drawhitbox(self.point, self.HIT)
+
 
 ########################################################################################################################
 class PlayerBomb(PlayerBullet):
     pass
 
+
 class EnemyBullet(Bullet):
+    ST_MOVE, ST_STOP = 0, 1
+    state = ST_MOVE
+    Movetimer = 0
+    Stoptimer = 0
+    Rater = False
+
     def draw(self):
-        RES.res.spr_bullet32.clip_rotate_draw(self.rad, self.SpriteColor*32, self.SpriteID*32, 32, 32, self.point.x, self.point.y,self.Size,self.Size)
+        RES.res.spr_bullet32.clip_rotate_draw(self.rad, self.SpriteColor * 32, self.SpriteID * 32, 32, 32, self.point.x,
+                                              self.point.y, self.Size, self.Size)
         drawhitbox(self.point, self.HIT)
 
+
+class EneBulletPlacer(EnemyBullet):
+    def __init__(self, spriteid, spritecolor, x, y, angle, anglerate, speed, speedrate, size=int(32), movetimer=0,
+                 stoptimer=0, rater=False):
+        self.SpriteID = spriteid
+        self.SpriteColor = spritecolor
+        self.point = Vec2D(x, y)
+        self.Angle = angle
+        self.AngleRate = anglerate
+        self.Speed = speed
+        self.SpeedRate = speedrate
+        self.Size = size
+        self.iscollisioned = False
+        self.Movetimer = movetimer
+        self.Stoptimer = stoptimer
+        self.Rater = rater
+
+    def update(self):
+        self.rad = self.Angle * math.pi / 180
+
+        self.point.x += self.Speed * math.cos(self.rad)
+        self.point.y += self.Speed * math.sin(self.rad)
+
+        self.Angle += self.AngleRate
+        self.Speed += self.SpeedRate

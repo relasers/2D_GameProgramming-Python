@@ -19,6 +19,8 @@ class Res:
     spr_bullet32 = None
 
     spr_enemy64 = None
+    spr_fairy = None
+
 
     spr_back_1_1 = None
     spr_back_1_2 = None
@@ -52,7 +54,8 @@ class Res:
 
         self.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
         self.spr_bullet32 = load_image('Resources/Images/Bullets/Bullet32.png')
-        self.spr_enemy64 = load_image('Resources/Images/Characters/Enemy\enemy_64.png')
+        self.spr_enemy64 = load_image('Resources/Images/Characters/Enemy/enemy_64.png')
+        self.spr_fairy = load_image('Resources/Images/Characters/Enemy/Fairy.png')
 
         self.spr_back_1_1 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_1.png')
         self.spr_back_1_2 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_1_2.png')
