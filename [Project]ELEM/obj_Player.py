@@ -173,6 +173,9 @@ class Ruby(Player):
             if event.key == SDLK_z:
                 self.isshooting = True
 
+            if event.key == SDLK_x:
+                GameManager.bomb += [PlayerBomb(0, 0, self.point.x, self.point.y, 0, 0, 5, 0.5)]
+
         # handle key Up
 
         if event.type == SDL_KEYUP:

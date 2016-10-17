@@ -3,7 +3,7 @@ from pico2d import *
 import RES
 import GameManager
 import math
-
+import random
 
 class Bullet(Actor):
     SpriteID = None
@@ -17,6 +17,7 @@ class Bullet(Actor):
 
     iscollisioned = False
     HIT = 4
+    HP = 1
 
     def __init__(self, spriteid, spritecolor, x, y, angle, anglerate, speed, speedrate, size=int(32)):
         self.SpriteID = spriteid
@@ -43,6 +44,8 @@ class Bullet(Actor):
         if GameManager.CLIENT_WIDTH < self.point.x - self.Size or self.point.x + self.Size < 0 or GameManager.CLIENT_HEIGHT < self.point.y - self.Size or self.point.y + self.Size < 0:
             return True
         if self.iscollisioned is True:
+            return True
+        if self.HP < 0:
             return True
 
 
@@ -83,7 +86,31 @@ class PlayerBulletChaser(PlayerBullet):
 
 ########################################################################################################################
 class PlayerBomb(PlayerBullet):
-    pass
+    opacify = 1
+    Damage = 10
+    HIT = 128
+    Size = 256
+    def update(self):
+        self.rad = self.Angle * math.pi / 180
+
+        self.point.x = GameManager.Player.point.x
+        self.point.y = GameManager.Player.point.y
+
+        self.Angle += self.AngleRate
+        self.Speed += self.SpeedRate
+        self.HIT += 50
+        self.Size += 100
+        self.iscollisioned = False
+        self.opacify -= 0.05
+    def isDestroy(self):
+        if self.opacify < 0:
+            return True
+
+    def draw(self):
+        RES.res.spr_ring.opacify(self.opacify)
+        RES.res.spr_ring.clip_rotate_draw(self.rad, 0, 0, 256, 256, self.point.x, self.point.y, self.Size,
+                                                   self.Size)
+        drawhitbox(self.point, self.HIT)
 
 
 class EnemyBullet(Bullet):
@@ -99,27 +126,41 @@ class EnemyBullet(Bullet):
         drawhitbox(self.point, self.HIT)
 
 
-class EneBulletPlacer(EnemyBullet):
-    def __init__(self, spriteid, spritecolor, x, y, angle, anglerate, speed, speedrate, size=int(32), movetimer=0,
-                 stoptimer=0, rater=False):
+class EneBulletReAngler(EnemyBullet):
+    RememberSpd = 0
+    Counter = 0
+
+    def __init__(self, spriteid, spritecolor, x, y, angle, anglerate, speed, speedrate, size=int(32)):
         self.SpriteID = spriteid
         self.SpriteColor = spritecolor
         self.point = Vec2D(x, y)
         self.Angle = angle
         self.AngleRate = anglerate
         self.Speed = speed
+        self.RememberSpd = speed
         self.SpeedRate = speedrate
         self.Size = size
         self.iscollisioned = False
-        self.Movetimer = movetimer
-        self.Stoptimer = stoptimer
-        self.Rater = rater
-
+        self.Counter = random.randint(3,5)
     def update(self):
         self.rad = self.Angle * math.pi / 180
 
         self.point.x += self.Speed * math.cos(self.rad)
         self.point.y += self.Speed * math.sin(self.rad)
 
-        self.Angle += self.AngleRate
-        self.Speed += self.SpeedRate
+        if self.Counter > 0:
+            self.Speed += self.SpeedRate
+            self.Angle += self.AngleRate
+
+
+        if self.Speed < 0:
+            self.Speed = self.RememberSpd
+            self.Angle = random.randint(0,359)
+            dice = [1, 2]
+            random.shuffle(dice)
+            if dice[0] == 1:
+                self.Angle = calcangle(self.point.x, self.point.y, GameManager.Player.point.x,
+                                       GameManager.Player.point.y)+random.randint(-10,10)
+            self.Counter -= 1
+
+

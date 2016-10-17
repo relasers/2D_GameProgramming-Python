@@ -28,6 +28,9 @@ def update():
         bullets.update()
     for bullets in GameManager.e_bullet:
         bullets.update()
+    for bomb in GameManager.bomb:
+        bomb.update()
+
     for enemys in GameManager.enemy:
         enemys.update()
 
@@ -37,10 +40,21 @@ def update():
                 enemys.HP -= bullets.Damage
                 bullets.iscollisioned = True
 
+    for bomb in GameManager.bomb:
+        for enemys in GameManager.enemy:
+            if bomb.isHit(enemys) is True:
+                enemys.HP -= bomb.Damage
+
 
     for bullets in GameManager.e_bullet:
-        if bullets.isHit(GameManager.Player) is True:
-            GameManager.e_bullet.remove(bullets)
+        if bullets.isHit(GameManager.Player) is True and bullets.HP > 0:
+            GameManager.live -= 1
+            bullets.HP -= 10
+        if len(GameManager.bomb) > 0:
+            if bullets.isHit(GameManager.bomb[0]) is True:
+                bullets.HP -= 10
+
+
 
 
     for bullets in GameManager.p_bullet:
@@ -49,6 +63,11 @@ def update():
     for bullets in GameManager.e_bullet:
         if bullets.isDestroy() is True:
             GameManager.e_bullet.remove(bullets)
+
+    for bomb in GameManager.bomb:
+        if bomb.isDestroy() is True:
+            GameManager.bomb.remove(bomb)
+
     for enemys in GameManager.enemy:
         if enemys.isDestroy() is True:
             if enemys.HP < 0:
@@ -70,12 +89,16 @@ def draw():
     for enemys in GameManager.enemy:
         enemys.draw()
 
+    for bomb in GameManager.bomb:
+        bomb.draw()
+
     GameManager.Player.draw()
 
     for bullets in GameManager.e_bullet:
         bullets.draw()
 
     RES.res.font_elem.draw(0, 780, " PROJECT ELEM ",(255,0,255))
+    RES.res.font_elem.draw(0, 750, " Live :: %s " % GameManager.live, (255, 0, 255))
 
     update_canvas()
     pass

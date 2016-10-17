@@ -21,7 +21,9 @@ class Res:
     spr_enemy64 = None
     spr_fairy = None
 
-
+    spr_ring = None
+    spr_back_logo = None
+    spr_back_black = None
     spr_back_1_1 = None
     spr_back_1_2 = None
     spr_back_1_3 = None
@@ -57,6 +59,9 @@ class Res:
         self.spr_enemy64 = load_image('Resources/Images/Characters/Enemy/enemy_64.png')
         self.spr_fairy = load_image('Resources/Images/Characters/Enemy/Fairy.png')
 
+        self.spr_ring = load_image('Resources/Images/Effects/tunelring.png')
+        self.spr_back_logo = load_image('Resources/Images/BackGrounds/Main/Logo.png')
+        self.spr_back_black = load_image('Resources/Images/BackGrounds/Main/Blackscn.png')
         self.spr_back_1_1 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_1.png')
         self.spr_back_1_2 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_1_2.png')
         self.spr_back_1_3 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_1_3.png')

@@ -15,6 +15,7 @@ background = None
 timer = None
 p_bullet = []
 e_bullet = []
+bomb = []
 enemy = []
 live = 0
 Player_Power = 0
@@ -24,6 +25,7 @@ def buildgame():
     global Player
     global p_bullet
     global e_bullet
+    global bomb
     global enemy
     global live
     global Player_Power
@@ -35,6 +37,7 @@ def buildgame():
     timer = T_Stage1()
     p_bullet = []
     e_bullet = []
+    bomb = []
     enemy = []
     live = 3
     Player_Power = 0
