@@ -18,7 +18,7 @@ class BKStage1(BackGround):
         self.state = self.PHASE1
         self.switch_boss = False
         self.spd_back_1_1 = 1
-        self.y_spd_back_1_1 = 40
+        self.y_spd_back_1_1 = 47.5
         self.y_spdr_back_1_1 = 0.55 # BackGrond 1's SpeedRate
 
         self.spd_back_1_2 = 14
@@ -84,19 +84,25 @@ class BKStage1(BackGround):
 
 
     def draw(self):
-        self.scrollingBG(RES.res.spr_back_1_7, self.x_back_1_7, 0, GameManager.CLIENT_WIDTH * 2,GameManager.CLIENT_HEIGHT)
-        self.scrollingBG(RES.res.spr_back_1_6, self.x_back_1_6, 0, GameManager.CLIENT_WIDTH * 2,GameManager.CLIENT_HEIGHT)
-        self.scrollingBG(RES.res.spr_back_1_5, self.x_back_1_5, 0, GameManager.CLIENT_WIDTH*2,GameManager.CLIENT_HEIGHT)
-        self.scrollingBG(RES.res.spr_back_1_4, self.x_back_1_4, -1200, GameManager.CLIENT_WIDTH,GameManager.CLIENT_HEIGHT*2)
+        self.scrollingBG(RES.res.spr_back_1_7, self.x_back_1_7, 0, GameManager.CLIENT_WIDTH * 2,1200)
+        self.scrollingBG(RES.res.spr_back_1_6, self.x_back_1_6, -200, GameManager.CLIENT_WIDTH * 2,1200)
+        self.scrollingBG(RES.res.spr_back_1_5, self.x_back_1_5, 0, GameManager.CLIENT_WIDTH*2,1200)
+        self.scrollingBG(RES.res.spr_back_1_4, self.x_back_1_4, -1800, GameManager.CLIENT_WIDTH,2400)
         if self.switch_boss is True:
             RES.res.spr_back_1_2.opacify(random.randint(0, 1) / 10)
-            self.scrollingBG(RES.res.spr_back_1_2, self.x_back_1_2, 0, GameManager.CLIENT_WIDTH * 2,GameManager.CLIENT_HEIGHT)
+            self.scrollingBG(RES.res.spr_back_1_2, self.x_back_1_2, 0, GameManager.CLIENT_WIDTH * 2,1200)
             RES.res.spr_back_1_3.opacify(random.randint(1, 2) / 10)
-            self.scrollingBG(RES.res.spr_back_1_3, self.x_back_1_3, 0, GameManager.CLIENT_WIDTH*2,GameManager.CLIENT_HEIGHT)
-        self.scrollingBG(RES.res.spr_back_1_1,self.x_back_1_1,self.y_back_1_1,GameManager.CLIENT_WIDTH,GameManager.CLIENT_HEIGHT*2)
+            self.scrollingBG(RES.res.spr_back_1_3, self.x_back_1_3, 0, GameManager.CLIENT_WIDTH*2,1200)
+        self.scrollingBG(RES.res.spr_back_1_1,self.x_back_1_1,self.y_back_1_1,GameManager.CLIENT_WIDTH,2400)
 
-        RES.res.font_elem.draw(300, 780, " Timer :: %s " % self.Timer, (255, 0, 255))
+        RES.res.font_elem.draw(300, GameManager.CLIENT_HEIGHT-20, " Timer :: %s " % self.Timer, (255, 0, 255))
     def scrollingBG(self,img,x,y,width,height):
         img.clip_draw_to_origin(0, 0, width, height, x, y)
         if x < width:
             img.clip_draw_to_origin(0, 0, width, height, x - width,y)
+
+    def pauseMusic(self):
+        RES.res.snd_back_1.pause()
+
+    def resumeMusic(self):
+        RES.res.snd_back_1.resume()

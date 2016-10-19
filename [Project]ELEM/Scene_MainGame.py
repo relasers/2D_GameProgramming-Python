@@ -9,6 +9,7 @@ from Timer import *
 import random
 
 name = "MainState"
+isPause = False
 def enter():
     # open_canvas(FrameWork.CLIENT_WIDTH,FrameWork.CLIENT_HEIGHT)
     GameManager.buildgame()
@@ -21,6 +22,77 @@ def exit():
 
 
 def update():
+    if isPause is False:
+        update_running()
+    pass
+
+
+def draw():
+    clear_canvas()
+
+    GameManager.background.draw()
+
+    for bullets in GameManager.p_bullet:
+        bullets.draw()
+
+    for enemys in GameManager.enemy:
+        enemys.draw()
+
+    for bomb in GameManager.bomb:
+        bomb.draw()
+
+    GameManager.Player.draw()
+
+    for bullets in GameManager.e_bullet:
+        bullets.draw()
+
+    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT-20, " PROJECT ELEM ",(255,0,255))
+    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT-50, " Live :: %s " % GameManager.live, (255, 0, 255))
+
+    if isPause is True:
+        RES.res.spr_pause.draw(GameManager.CLIENT_WIDTH/2, GameManager.CLIENT_HEIGHT/2)
+
+    update_canvas()
+    pass
+
+
+def handle_events():
+    global isPause
+    events = get_events()
+    for event in events:
+        if event.type == SDL_QUIT:
+            FrameWork.quit()
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
+            FrameWork.quit()
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_q):
+            GameManager.Player_Power += 1
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
+            GameManager.background.state = (GameManager.background.state + 1 ) % 4
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_o): # Toggle Collision Box
+            GameManager.CollisionBox = not GameManager.CollisionBox
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_p): # Toggle Collision Box
+            if isPause is False:
+                pause()
+            elif isPause is True:
+                resume()
+        else:
+            GameManager.Player.handle_chara(event)
+        pass
+
+def pause():
+    global isPause
+    GameManager.background.pauseMusic()
+    isPause = True
+    pass
+
+
+def resume():
+    global isPause
+    GameManager.background.resumeMusic()
+    isPause = False
+    pass
+
+def update_running():
     GameManager.timer.update()
     GameManager.Player.update()
 
@@ -45,7 +117,6 @@ def update():
             if bomb.isHit(enemys) is True:
                 enemys.HP -= bomb.Damage
 
-
     for bullets in GameManager.e_bullet:
         if bullets.isHit(GameManager.Player) is True and bullets.HP > 0:
             GameManager.live -= 1
@@ -53,9 +124,6 @@ def update():
         if len(GameManager.bomb) > 0:
             if bullets.isHit(GameManager.bomb[0]) is True:
                 bullets.HP -= 10
-
-
-
 
     for bullets in GameManager.p_bullet:
         if bullets.isDestroy() is True:
@@ -75,55 +143,3 @@ def update():
             GameManager.enemy.remove(enemys)
 
     GameManager.background.update()
-    pass
-
-
-def draw():
-    clear_canvas()
-
-    GameManager.background.draw()
-
-    for bullets in GameManager.p_bullet:
-        bullets.draw()
-
-    for enemys in GameManager.enemy:
-        enemys.draw()
-
-    for bomb in GameManager.bomb:
-        bomb.draw()
-
-    GameManager.Player.draw()
-
-    for bullets in GameManager.e_bullet:
-        bullets.draw()
-
-    RES.res.font_elem.draw(0, 780, " PROJECT ELEM ",(255,0,255))
-    RES.res.font_elem.draw(0, 750, " Live :: %s " % GameManager.live, (255, 0, 255))
-
-    update_canvas()
-    pass
-
-
-def handle_events():
-    events = get_events()
-    for event in events:
-        if event.type == SDL_QUIT:
-            FrameWork.quit()
-        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
-            FrameWork.quit()
-        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_q):
-            GameManager.Player_Power += 1
-        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
-            GameManager.background.state = (GameManager.background.state + 1 ) % 4
-        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_p): # Toggle Collision Box
-            GameManager.CollisionBox = not GameManager.CollisionBox
-        else:
-            GameManager.Player.handle_chara(event)
-        pass
-
-def pause():
-    pass
-
-
-def resume():
-    pass
