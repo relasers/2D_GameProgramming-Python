@@ -22,6 +22,9 @@ class Res:
     spr_fairy = None
 
     spr_ring = None
+    spr_core = None
+    spr_explode = None
+
     spr_pause = None
 
     spr_back_logo = None
@@ -62,6 +65,9 @@ class Res:
         self.spr_fairy = load_image('Resources/Images/Characters/Enemy/Fairy.png')
 
         self.spr_ring = load_image('Resources/Images/Effects/tunelring.png')
+        self.spr_core = load_image('Resources/Images/Effects/Core256.png')
+        self.spr_explode = load_image('Resources/Images/Effects/Core256.png')
+
         self.spr_pause = load_image('Resources/Images/BackGrounds/Main/Pause.png')
 
         self.spr_back_logo = load_image('Resources/Images/BackGrounds/Main/Logo.png')

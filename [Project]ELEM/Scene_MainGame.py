@@ -41,6 +41,9 @@ def draw():
     for bomb in GameManager.bomb:
         bomb.draw()
 
+    for particles in GameManager.particle:
+        particles.draw()
+
     GameManager.Player.draw()
 
     for bullets in GameManager.e_bullet:
@@ -106,6 +109,9 @@ def update_running():
     for enemys in GameManager.enemy:
         enemys.update()
 
+    for particles in GameManager.particle:
+        particles.update()
+
     for bullets in GameManager.p_bullet:
         for enemys in GameManager.enemy:
             if bullets.isHit(enemys) is True and bullets.iscollisioned is False:
@@ -140,6 +146,12 @@ def update_running():
         if enemys.isDestroy() is True:
             if enemys.HP < 0:
                 RES.res.snd_destroy.play()
+                GameManager.particle += [
+                    ExplodeEnemy(0, enemys.SpriteID, enemys.point.x, enemys.point.y, True, enemys.Size, True, 0, 12, 1)]
             GameManager.enemy.remove(enemys)
+
+    for particles in GameManager.particle:
+        if particles.isDestroy() is True:
+            GameManager.particle.remove(particles)
 
     GameManager.background.update()

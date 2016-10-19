@@ -52,6 +52,8 @@ class Ruby(Player):
                 RES.res.spr_ruby.clip_draw(self.frame * 64, 64, 64, 64, self.point.x, self.point.y)
 
                 drawhitbox(self.point, self.HIT)
+            if self.slowmode is True:
+                RES.res.spr_core.clip_draw(0, 0, 256, 256, self.point.x, self.point.y,32,32)
 
 
     def update(self):
