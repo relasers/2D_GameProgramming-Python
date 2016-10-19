@@ -12,3 +12,7 @@ class Particle:
     def isDestroy(self):
         if self.img_frame == self.MX_frame:
             return True
+        if self.opacify < 0:
+            return True
+
+

@@ -17,6 +17,7 @@ p_bullet = []
 e_bullet = []
 bomb = []
 enemy = []
+particle = []
 live = 0
 Player_Power = 0
 
@@ -31,6 +32,7 @@ def buildgame():
     global Player_Power
     global background
     global timer
+    global particle
 
     Player = Ruby(600, 600)
     background = BKStage1()
@@ -39,5 +41,7 @@ def buildgame():
     e_bullet = []
     bomb = []
     enemy = []
+    particle = []
+
     live = 3
     Player_Power = 0
