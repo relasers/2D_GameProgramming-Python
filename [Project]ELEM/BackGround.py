@@ -95,7 +95,7 @@ class BKStage1(BackGround):
             self.scrollingBG(RES.res.spr_back_1_3, self.x_back_1_3, 0, GameManager.CLIENT_WIDTH*2,1200)
         self.scrollingBG(RES.res.spr_back_1_1,self.x_back_1_1,self.y_back_1_1,GameManager.CLIENT_WIDTH,2400)
 
-        RES.res.font_elem.draw(300, GameManager.CLIENT_HEIGHT-20, " Timer :: %s " % self.Timer, (255, 0, 255))
+        RES.res.font_elem.draw(300, GameManager.CLIENT_HEIGHT-20, " Timer :: %s " % self.Timer, (155, 155, 155))
     def scrollingBG(self,img,x,y,width,height):
         img.clip_draw_to_origin(0, 0, width, height, x, y)
         if x < width:

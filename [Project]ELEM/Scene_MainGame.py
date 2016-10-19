@@ -49,8 +49,10 @@ def draw():
     for bullets in GameManager.e_bullet:
         bullets.draw()
 
-    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT-20, " PROJECT ELEM ",(255,0,255))
-    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT-50, " Live :: %s " % GameManager.live, (255, 0, 255))
+    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT-20, " PROJECT ELEM ",(155,155,155))
+    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT - 50, " Power :: %s " % GameManager.Player_Power, (255, 0, 255))
+    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT-80, " Live :: %s " % GameManager.live, (255, 0, 0))
+    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT - 110, " Bomb :: %s " % GameManager.curr_bomb, (0, 255, 255))
 
     if isPause is True:
         RES.res.spr_pause.draw(GameManager.CLIENT_WIDTH/2, GameManager.CLIENT_HEIGHT/2)

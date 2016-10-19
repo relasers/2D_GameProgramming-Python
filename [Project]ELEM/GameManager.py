@@ -19,6 +19,7 @@ bomb = []
 enemy = []
 particle = []
 live = 0
+curr_bomb = 0
 Player_Power = 0
 
 
@@ -29,6 +30,7 @@ def buildgame():
     global bomb
     global enemy
     global live
+    global curr_bomb
     global Player_Power
     global background
     global timer
@@ -40,8 +42,10 @@ def buildgame():
     p_bullet = []
     e_bullet = []
     bomb = []
+
     enemy = []
     particle = []
 
     live = 3
+    curr_bomb = 3
     Player_Power = 0

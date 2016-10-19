@@ -51,6 +51,7 @@ class Res:
     snd_back_1 = None
 
     snd_shoot = None
+    snd_ruby_bomb = None
     snd_e_shoot = None
     snd_destroy = None
     def __init__(self):
@@ -96,6 +97,9 @@ class Res:
 
         self.snd_shoot = load_wav('Resources/Sounds/SE/plst00.wav')
         self.snd_shoot.set_volume(10)
+
+        self.snd_ruby_bomb = load_wav('Resources/Sounds/SE/crystal2.wav')
+        self.snd_ruby_bomb.set_volume(40)
 
         self.snd_e_shoot = load_wav('Resources/Sounds/SE/tan01.wav')
         self.snd_e_shoot.set_volume(1)
