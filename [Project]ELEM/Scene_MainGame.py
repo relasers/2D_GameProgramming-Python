@@ -81,7 +81,8 @@ def handle_events():
             elif isPause is True:
                 resume()
         else:
-            GameManager.Player.handle_chara(event)
+            if isPause is False:
+                GameManager.Player.handle_chara(event)
         pass
 
 def pause():

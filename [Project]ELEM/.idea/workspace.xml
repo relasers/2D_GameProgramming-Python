@@ -20,21 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="obj_Player.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="obj_Player.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/obj_Player.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="177" column="35" selection-start-line="177" selection-start-column="35" selection-end-line="177" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pico2d.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pico2d.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5643">
-              <caret line="306" column="0" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
+            <state relative-caret-position="160">
+              <caret line="174" column="35" selection-start-line="174" selection-start-column="35" selection-end-line="174" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -43,8 +33,8 @@
       <file leaf-file-name="Scene_MainGame.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Scene_MainGame.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="51" column="89" selection-start-line="51" selection-start-column="89" selection-end-line="51" selection-end-column="89" />
+            <state relative-caret-position="-1379">
+              <caret line="52" column="85" selection-start-line="52" selection-start-column="85" selection-end-line="52" selection-end-column="85" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
               </folding>
@@ -52,10 +42,34 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Core256.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resources/Images/Effects/Core256.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tunelring.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Resources/Images/Effects/tunelring.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Scene_Logo.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Scene_Logo.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="GameManager.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GameManager.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="711">
+            <state relative-caret-position="874">
               <caret line="50" column="16" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="16" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
@@ -64,24 +78,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RES.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RES.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RES.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+            <state relative-caret-position="1881">
+              <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="obj_Bullet.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/obj_Bullet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="21" column="51" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="51" />
-              <folding>
-                <element signature="e#0#22#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -89,7 +91,7 @@
       <file leaf-file-name="obj_enemy.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/obj_enemy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="988">
+            <state relative-caret-position="-3804">
               <caret line="58" column="8" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="8" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
@@ -101,7 +103,7 @@
       <file leaf-file-name="obj_Particle.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/obj_Particle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="200">
+            <state relative-caret-position="798">
               <caret line="44" column="23" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
@@ -113,18 +115,8 @@
       <file leaf-file-name="BackGround.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BackGround.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
+            <state relative-caret-position="1615">
               <caret line="89" column="97" selection-start-line="89" selection-start-column="97" selection-end-line="89" selection-end-column="97" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FrameWork.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/FrameWork.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1178">
-              <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -163,16 +155,16 @@
         <option value="$PROJECT_DIR$/main.py" />
         <option value="$PROJECT_DIR$/vector2D.py" />
         <option value="$PROJECT_DIR$/obj_Bullet.py" />
-        <option value="$PROJECT_DIR$/Scene_Logo.py" />
         <option value="$PROJECT_DIR$/Timer.py" />
         <option value="$PROJECT_DIR$/pico2d.py" />
         <option value="$PROJECT_DIR$/obj_enemy.py" />
         <option value="$PROJECT_DIR$/obj_Particle.py" />
         <option value="$PROJECT_DIR$/GameManager.py" />
-        <option value="$PROJECT_DIR$/Scene_MainGame.py" />
         <option value="$PROJECT_DIR$/BackGround.py" />
         <option value="$PROJECT_DIR$/obj_Player.py" />
         <option value="$PROJECT_DIR$/RES.py" />
+        <option value="$PROJECT_DIR$/Scene_Logo.py" />
+        <option value="$PROJECT_DIR$/Scene_MainGame.py" />
       </list>
     </option>
   </component>
@@ -223,6 +215,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -394,7 +387,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -689,7 +681,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/obj_Actor.py" />
     <entry file="file://D:/Refer_Document/Secnd_Secnd/2D_Game_Programming/Sampl/2014_%EC%A0%95%EC%9C%A0%ED%9B%88_%EC%B5%9C%EC%A2%85/소스코드/Characters.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-4090">
@@ -844,11 +835,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Resources/Images/Effects/tunelring.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resources/Images/Bullets/Bullet64.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -887,13 +873,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scene_Logo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="36" column="39" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resources/Images/BackGrounds/Stage_1/Back_1_4.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -910,7 +889,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5643">
           <caret line="306" column="0" selection-start-line="306" selection-start-column="0" selection-end-line="306" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -918,7 +896,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1178">
           <caret line="62" column="37" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -927,34 +904,32 @@
         <state relative-caret-position="304">
           <caret line="21" column="51" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="51" />
           <folding>
-            <element signature="e#0#22#0" expanded="true" />
+            <element signature="e#0#22#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/obj_enemy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="988">
-          <caret line="58" column="8" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/Resources/Images/Effects/Core256.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/obj_Particle.py">
+    <entry file="file://$PROJECT_DIR$/Resources/Images/Effects/tunelring.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Scene_Logo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="44" column="23" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="323">
+          <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GameManager.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="711">
+        <state relative-caret-position="874">
           <caret line="50" column="16" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="16" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
@@ -962,10 +937,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scene_MainGame.py">
+    <entry file="file://$PROJECT_DIR$/RES.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="51" column="89" selection-start-line="51" selection-start-column="89" selection-end-line="51" selection-end-column="89" />
+        <state relative-caret-position="1881">
+          <caret line="99" column="0" selection-start-line="99" selection-start-column="0" selection-end-line="99" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obj_Particle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="798">
+          <caret line="44" column="23" selection-start-line="44" selection-start-column="23" selection-end-line="44" selection-end-column="23" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
           </folding>
@@ -974,24 +957,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BackGround.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
+        <state relative-caret-position="1615">
           <caret line="89" column="97" selection-start-line="89" selection-start-column="97" selection-end-line="89" selection-end-column="97" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/obj_Player.py">
+    <entry file="file://$PROJECT_DIR$/obj_enemy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="177" column="35" selection-start-line="177" selection-start-column="35" selection-end-line="177" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="-3804">
+          <caret line="58" column="8" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RES.py">
+    <entry file="file://$PROJECT_DIR$/Scene_MainGame.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+        <state relative-caret-position="-1379">
+          <caret line="52" column="85" selection-start-line="52" selection-start-column="85" selection-end-line="52" selection-end-column="85" />
+          <folding>
+            <element signature="e#0#20#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/obj_Player.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="174" column="35" selection-start-line="174" selection-start-column="35" selection-end-line="174" selection-end-column="35" />
           <folding />
         </state>
       </provider>
