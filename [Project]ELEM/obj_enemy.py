@@ -235,7 +235,12 @@ class Enemy_Rounder(Enemy64):
 
         self.handle_state[self.state](self)
         self.move()
+class Enemy_shotgun(Enemy):
+    pass
 ########################################################################################################################
+
+
+
 class Enemy128(Enemy):
     ST_STAND, ST_SHOOT = 0, 1
 
