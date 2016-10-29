@@ -10,7 +10,7 @@ import math
 class Player(Actor):
     ST_X_NONE, ST_X_FORWARD, ST_X_BAKWARD = 0, 1, 2
     ST_Y_NONE, ST_Y_UP, ST_Y_DOWN = 3, 4, 5
-
+    STAT_LEFT = 0
     HIGH_SPEED = 10
     LOW_SPEED = 4
 

@@ -1,5 +1,5 @@
 import time
-
+from pico2d import *
 UPDATE_DELAY = 1.0 / 60.0
 
 running = None
@@ -56,10 +56,10 @@ def run(start_state):
     running = True
     stack = [start_state]
     start_state.enter()
-    current_time = time.clock()
+    current_time = time.perf_counter()
     while running:
-        if time.clock() - current_time > UPDATE_DELAY:
-            current_time = time.clock()
+        if time.perf_counter() - current_time > UPDATE_DELAY:
+            current_time = time.perf_counter()
             stack[-1].handle_events()
             stack[-1].update()
             stack[-1].draw()
