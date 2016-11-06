@@ -49,10 +49,14 @@ def draw():
     for bullets in GameManager.e_bullet:
         bullets.draw()
 
-    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT-20, " PROJECT ELEM ",(155,155,155))
-    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT - 50, " Power :: %s " % GameManager.Player_Power, (255, 0, 255))
-    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT-80, " Live :: %s " % GameManager.live, (255, 0, 0))
-    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT - 110, " Bomb :: %s " % GameManager.curr_bomb, (0, 255, 255))
+    RES.res.spr_UIbar.draw(GameManager.CLIENT_WIDTH / 2, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE/2)
+
+
+    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT-20, " Live :: %s " % GameManager.live, (255, 0, 0))
+    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT - 50, " Bomb :: %s " % GameManager.curr_bomb, (0, 255, 255))
+
+    RES.res.font_elem.draw(100, GameManager.CLIENT_HEIGHT - 20, " Power :: %s " % GameManager.Player_Power, (255, 0, 255))
+    RES.res.font_elem.draw(300, GameManager.CLIENT_HEIGHT - 20, " Timer :: %s " % GameManager.maintime, (155, 155, 155))
 
     if isPause is True:
         RES.res.spr_pause.draw(GameManager.CLIENT_WIDTH/2, GameManager.CLIENT_HEIGHT/2)
@@ -99,6 +103,7 @@ def resume():
     pass
 
 def update_running():
+
     GameManager.timer.update()
     GameManager.Player.update()
 
@@ -158,3 +163,5 @@ def update_running():
             GameManager.particle.remove(particles)
 
     GameManager.background.update()
+
+    GameManager.maintime += 1

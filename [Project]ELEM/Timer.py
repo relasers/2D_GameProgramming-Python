@@ -42,7 +42,7 @@ class T_Stage1(Timer):
         if self.t_phase_frame % 20 == 0:
             GameManager.enemy += [
                 Enemy_Gorgon(1, GameManager.CLIENT_WIDTH,
-                             random.randint(0, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE), 180, 0, 10, -0.1)
+                             random.randint(0, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE*3), 180, 0, 10, -0.1)
             ]
         if self.t_frame > 3270:
             self.t_phase_frame = 49

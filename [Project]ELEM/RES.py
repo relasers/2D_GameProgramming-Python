@@ -26,6 +26,7 @@ class Res:
     spr_explode = None
 
     spr_pause = None
+    spr_UIbar = None
 
     spr_back_logo = None
     spr_back_black = None
@@ -57,7 +58,7 @@ class Res:
     def __init__(self):
 
         # self.font_elem = Font('Resources/Fonts/tennobet.ttf',30)
-        self.font_elem = Font('Resources/Fonts/chemrea.ttf', 30)
+        self.font_elem = Font('Resources/Fonts/chemrea.ttf', 16)
         self.spr_ruby = load_image('Resources/images/Characters/Ally/Ruby_set.png')
 
         self.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
@@ -70,6 +71,7 @@ class Res:
         self.spr_explode = load_image('Resources/Images/Effects/Core256.png')
 
         self.spr_pause = load_image('Resources/Images/BackGrounds/Main/Pause.png')
+        self.spr_UIbar = load_image('Resources/Images/BackGrounds/Main/UI.png')
 
         self.spr_back_logo = load_image('Resources/Images/BackGrounds/Main/Logo.png')
         self.spr_back_black = load_image('Resources/Images/BackGrounds/Main/Blackscn.png')

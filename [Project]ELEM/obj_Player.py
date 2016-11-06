@@ -140,8 +140,8 @@ class Ruby(Player):
             self.point.x = GameManager.CLIENT_WIDTH
         if self.point.y < 32:
             self.point.y = 32
-        if GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE < self.point.y + 64:
-            self.point.y = GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE - 64
+        if GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE < self.point.y + 32:
+            self.point.y = GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE - 32
 
     def handle_chara(self, event):
 

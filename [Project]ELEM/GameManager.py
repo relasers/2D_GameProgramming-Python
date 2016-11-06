@@ -5,8 +5,8 @@ from BackGround import *
 from Timer import *
 
 CLIENT_WIDTH = 1200
-CLIENT_HEIGHT = 800
-UI_SIZE = 48
+CLIENT_HEIGHT = 768
+UI_SIZE = 64
 
 CollisionBox = False
 
@@ -18,10 +18,12 @@ e_bullet = []
 bomb = []
 enemy = []
 particle = []
+
+
 live = 0
 curr_bomb = 0
 Player_Power = 0
-
+maintime = 0
 
 def buildgame():
     global Player
