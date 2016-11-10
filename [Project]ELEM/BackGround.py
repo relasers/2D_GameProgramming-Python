@@ -106,5 +106,9 @@ class BKStage1(BackGround):
     def resumeMusic(self):
         RES.res.snd_back_1.resume()
 
+
 class BKStage2(BackGround):
+    pass
+
+class BKStage3(BackGround):
     pass
