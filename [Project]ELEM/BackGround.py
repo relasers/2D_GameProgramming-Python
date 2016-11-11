@@ -112,3 +112,5 @@ class BKStage2(BackGround):
 
 class BKStage3(BackGround):
     pass
+class BKStage4(BackGround):
+    pass
