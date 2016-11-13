@@ -15,6 +15,8 @@ class Res:
 
     spr_ruby = None
 
+    spr_item = None
+
     spr_player_bullet = None
     spr_bullet32 = None
 
@@ -27,6 +29,7 @@ class Res:
 
     spr_pause = None
     spr_UIbar = None
+    spr_powerbar = None
 
     spr_back_logo = None
     spr_back_black = None
@@ -61,6 +64,8 @@ class Res:
         self.font_elem = Font('Resources/Fonts/chemrea.ttf', 16)
         self.spr_ruby = load_image('Resources/images/Characters/Ally/Ruby_set.png')
 
+        self.spr_item = load_image('Resources/images/Misc/item.png')
+
         self.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
         self.spr_bullet32 = load_image('Resources/Images/Bullets/Bullet32.png')
         self.spr_enemy64 = load_image('Resources/Images/Characters/Enemy/enemy_64.png')
@@ -72,6 +77,7 @@ class Res:
 
         self.spr_pause = load_image('Resources/Images/BackGrounds/Main/Pause.png')
         self.spr_UIbar = load_image('Resources/Images/BackGrounds/Main/UI.png')
+        self.spr_powerbar = load_image('Resources/Images/BackGrounds/Main/PowerBar.png')
 
         self.spr_back_logo = load_image('Resources/Images/BackGrounds/Main/Logo.png')
         self.spr_back_black = load_image('Resources/Images/BackGrounds/Main/Blackscn.png')

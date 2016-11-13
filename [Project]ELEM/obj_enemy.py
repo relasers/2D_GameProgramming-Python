@@ -155,7 +155,7 @@ class Enemy_spiral(Enemy64):
 ########################################################################################################################
 class Enemy_Gorgon(Enemy64):
     ST_STAND, ST_SHOOT = 0, 1
-    HP = 3
+    HP = 2
     def shoot(self):
         for i in range(4):
             GameManager.e_bullet += [

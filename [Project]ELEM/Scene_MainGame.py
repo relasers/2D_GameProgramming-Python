@@ -50,14 +50,19 @@ def draw():
         bullets.draw()
 
     RES.res.spr_UIbar.draw(GameManager.CLIENT_WIDTH / 2, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE/2)
+    RES.res.spr_powerbar.clip_draw_to_origin(0, 32, 500, 32,
+                                             GameManager.CLIENT_WIDTH / 2 - 250, GameManager.CLIENT_HEIGHT - 48)
+    RES.res.spr_powerbar.clip_draw_to_origin(0, 0, min(500, (int)(GameManager.Player_Power) ), 32,
+                                             GameManager.CLIENT_WIDTH / 2 - 250, GameManager.CLIENT_HEIGHT - 48)
 
-
-    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT-20, " Live :: %s " % GameManager.live, (255, 0, 0))
+    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT - 20, " Live :: %s " % GameManager.live, (255, 0, 0))
     RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT - 50, " Bomb :: %s " % GameManager.curr_bomb, (0, 255, 255))
 
-    RES.res.font_elem.draw(100, GameManager.CLIENT_HEIGHT - 20, " Power :: %s " % GameManager.Player_Power, (255, 0, 255))
-    RES.res.font_elem.draw(300, GameManager.CLIENT_HEIGHT - 20, " Timer :: %s " % GameManager.maintime, (155, 155, 155))
-
+    RES.res.font_elem.draw(270, GameManager.CLIENT_HEIGHT - 32, " Power :: " , (255, 255-(int)(0.51*GameManager.Player_Power), 255-(int)(0.51*GameManager.Player_Power)))
+    RES.res.font_elem.draw(GameManager.CLIENT_WIDTH / 2-64, GameManager.CLIENT_HEIGHT - 32, "  %0.2f " % GameManager.Player_Power,
+                           (255, 255-(int)(0.51*GameManager.Player_Power), 255-(int)(0.51*GameManager.Player_Power)))
+    RES.res.font_elem.draw(300, GameManager.CLIENT_HEIGHT - 80, " Timer :: %s " % GameManager.maintime, (155, 155, 155))
+    RES.res.font_elem.draw(GameManager.CLIENT_WIDTH/2 + 300, GameManager.CLIENT_HEIGHT - 32, " Score :: %s " % GameManager.score, (155, 155, 155))
     if isPause is True:
         RES.res.spr_pause.draw(GameManager.CLIENT_WIDTH/2, GameManager.CLIENT_HEIGHT/2)
 
@@ -74,7 +79,7 @@ def handle_events():
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
             FrameWork.quit()
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_q):
-            GameManager.Player_Power += 1
+            GameManager.Player_Power = min(500,GameManager.Player_Power+100)
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
             GameManager.background.state = (GameManager.background.state + 1 ) % 4
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_o): # Toggle Collision Box
@@ -124,11 +129,15 @@ def update_running():
         for enemys in GameManager.enemy:
             if bullets.isHit(enemys) is True and bullets.iscollisioned is False:
                 enemys.HP -= bullets.Damage
+                GameManager.Player_Power = min(500, GameManager.Player_Power + 0.5)
+                GameManager.score += 1
                 bullets.iscollisioned = True
 
     for bomb in GameManager.bomb:
         for enemys in GameManager.enemy:
             if bomb.isHit(enemys) is True:
+                GameManager.Player_Power = min(500, GameManager.Player_Power + 0.5)
+                GameManager.score += 1
                 enemys.HP -= bomb.Damage
 
     for bullets in GameManager.e_bullet:
@@ -157,6 +166,7 @@ def update_running():
                 GameManager.particle += [
                     ExplodeEnemy(0, enemys.SpriteID, enemys.point.x, enemys.point.y, True, enemys.Size, True, 0, 12, 1)]
             GameManager.enemy.remove(enemys)
+            GameManager.score += 10
 
     for particles in GameManager.particle:
         if particles.isDestroy() is True:

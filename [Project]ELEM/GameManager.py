@@ -22,7 +22,7 @@ particle = []
 
 live = 0
 curr_bomb = 0
-Player_Power = 0
+Player_Power = 0.0
 maintime = 0
 score = 0
 

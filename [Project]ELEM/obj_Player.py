@@ -90,27 +90,37 @@ class Ruby(Player):
                               GameManager.enemy[0].point.x,GameManager.enemy[0].point.y)
 
 
-        if GameManager.Player_Power < 1:
+        if GameManager.Player_Power < 100:
             GameManager.p_bullet += [PlayerBullet(0, 0, self.point.x, self.point.y, 0, 0, 5, 0.5)]
 
-        elif 1 <= GameManager.Player_Power < 2:
+        elif 100 <= GameManager.Player_Power < 200:
             GameManager.p_bullet += [PlayerBullet(0, 0, self.point.x, self.point.y + 5, 1, 0, 5, 0.5),
                                      PlayerBullet(0, 0, self.point.x, self.point.y - 5, -1, 0, 5, 0.5)]
 
-        elif 2 <= GameManager.Player_Power < 3:
+        elif 200 <= GameManager.Player_Power < 300:
             GameManager.p_bullet += [
                 PlayerBulletChaser(0, 0, self.point.x, self.point.y, chaseangle, 0, 7, 0.5),
                 PlayerBullet(0, 0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
                 PlayerBullet(0, 0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
 
-        elif 3 <= GameManager.Player_Power < 4:
+        elif 300 <= GameManager.Player_Power < 400:
             GameManager.p_bullet += [
                 PlayerBulletChaser(0, 0, self.point.x, self.point.y+10, 3+chaseangle, 0, 7, 0.5),
                 PlayerBulletChaser(0, 0, self.point.x, self.point.y-10, -3+chaseangle, 0, 7, 0.5),
                 PlayerBullet(0, 0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
                 PlayerBullet(0, 0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
 
-        elif 4 <= GameManager.Player_Power:
+        elif 400 <= GameManager.Player_Power < 500:
+            GameManager. p_bullet += [
+                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y + 16, 3+chaseangle, 0, 7, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y - 16, -3+chaseangle, 0, 7, 0.5),
+                PlayerBullet(0,0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
+                PlayerBullet(0,0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5),
+                PlayerBullet(0,0, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
+                PlayerBullet(0,0, self.point.x, self.point.y - 18, random.randint(-5, 5), 0, 5, 0.5),
+            ]
+
+        elif 500 <= GameManager.Player_Power:
             GameManager. p_bullet += [
                 PlayerBulletChaser(0, 0, self.point.x, self.point.y, random.randint(-5, 5)+chaseangle, 0, 7, 0.5),
                 PlayerBulletChaser(0, 0, self.point.x-3, self.point.y + 16, 3+chaseangle, 0, 7, 0.5),
