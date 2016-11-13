@@ -241,7 +241,7 @@ class Enemy_shotgun(Enemy):
 
 
 
-class Enemy128(Enemy):
+class Enemy_fairy(Enemy):
     ST_STAND, ST_SHOOT = 0, 1
 
     img_rad = 0

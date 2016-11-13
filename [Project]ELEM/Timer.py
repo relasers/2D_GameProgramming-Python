@@ -60,7 +60,7 @@ class T_Stage1(Timer):
     def handle_phase_5(self):
         if self.t_phase_frame == 500:
             GameManager.enemy += [
-                Enemy128(0, GameManager.CLIENT_WIDTH,
+                Enemy_fairy(0, GameManager.CLIENT_WIDTH,
                          (GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE) / 2, 180, 0, 10,
                          -0.1, True)
             ]
