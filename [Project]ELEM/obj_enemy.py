@@ -1,6 +1,7 @@
 from pico2d import *
 from vector2D import *
 from obj_Bullet import *
+from obj_Item import *
 from obj_Particle import *
 import GameManager
 import random
@@ -47,6 +48,9 @@ class Enemy(Actor):
             return True
         if self.HP < 0:
             return True
+
+    def KIA(self):
+        pass
 
 ########################################################################################################################
 class Enemy64(Enemy):
@@ -113,7 +117,7 @@ class Enemy64(Enemy):
 ########################################################################################################################
 class Enemy_spiral(Enemy64):
     ST_STAND, ST_SHOOT = 0, 1
-    HP = 20
+    HP = 15
     def shoot(self):
         for i in range(4):
             GameManager.e_bullet += [
@@ -131,7 +135,7 @@ class Enemy_spiral(Enemy64):
 
     def handle_shoot(self):
         self.shoot_frame += 1
-        if self.shoot_frame % 5 == 0:
+        if self.shoot_frame % 10 == 0:
             self.shoot()
         if self.shoot_frame > 300:
             self.stand_frame = 0
@@ -151,6 +155,12 @@ class Enemy_spiral(Enemy64):
 
         self.handle_state[self.state](self)
         self.move()
+
+    def KIA(self):
+        for i in range(5):
+            GameManager.item += [
+            Item(self.point.x, self.point.y,0,random.randint(0,360),0,5,-0.1,32),
+        ]
 
 ########################################################################################################################
 class Enemy_Gorgon(Enemy64):
@@ -174,7 +184,7 @@ class Enemy_Gorgon(Enemy64):
 
     def handle_shoot(self):
         self.shoot_frame += 1
-        if self.shoot_frame % 15 == 0:
+        if self.shoot_frame % 45 == 0:
             self.shoot()
         if self.shoot_frame > 100:
             self.stand_frame = 0
@@ -240,7 +250,6 @@ class Enemy_shotgun(Enemy):
 ########################################################################################################################
 
 
-
 class Enemy_fairy(Enemy):
     ST_STAND, ST_SHOOT = 0, 1
 
@@ -254,7 +263,7 @@ class Enemy_fairy(Enemy):
     shoot_frame = 0
     state = ST_STAND
     HIT = 64
-    HP = 750
+    HP = 7500
 
     def draw(self):
         RES.res.spr_fairy.opacify(0.7)
@@ -289,6 +298,11 @@ class Enemy_fairy(Enemy):
             self.img_frame = (self.img_frame + 1) % 32
             self.img_tick = 0
 
+        if GameManager.maintime == 5200:
+            self.ishold = False
+            self.SpeedRate = -0.1
+            self.HP = 20
+
         self.handle_state[self.state](self)
         self.move()
         pass
@@ -303,4 +317,16 @@ class Enemy_fairy(Enemy):
                               calcangle(self.point.x, self.point.y, GameManager.Player.point.x,
                                         GameManager.Player.point.y),
                               random.randint(-1,1), 5, -0.2)
+        ]
+
+    def KIA(self):
+        for i in range(10):
+            GameManager.item += [
+                Item(self.point.x, self.point.y, 0, random.randint(0, 360), 0, 5, -0.1, 32),
+            ]
+        GameManager.item += [
+            Item(self.point.x, self.point.y, 1, random.randint(0, 360), 0, 5, -0.1, 32),
+        ]
+        GameManager.item += [
+            Item(self.point.x, self.point.y, 2, random.randint(0, 360), 0, 5, -0.1, 32),
         ]

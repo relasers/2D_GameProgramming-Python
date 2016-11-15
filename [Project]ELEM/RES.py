@@ -23,6 +23,9 @@ class Res:
     spr_enemy64 = None
     spr_fairy = None
 
+    spr_boss1 = None
+    spr_boss2 = None
+
     spr_ring = None
     spr_core = None
     spr_explode = None
@@ -70,6 +73,9 @@ class Res:
         self.spr_bullet32 = load_image('Resources/Images/Bullets/Bullet32.png')
         self.spr_enemy64 = load_image('Resources/Images/Characters/Enemy/enemy_64.png')
         self.spr_fairy = load_image('Resources/Images/Characters/Enemy/Fairy.png')
+
+        self.spr_boss1 = load_image('Resources/Images/Characters/Enemy/Boss1.png')
+        self.spr_boss2 = load_image('Resources/Images/Characters/Enemy/Boss1.png')
 
         self.spr_ring = load_image('Resources/Images/Effects/tunelring.png')
         self.spr_core = load_image('Resources/Images/Effects/Core256.png')

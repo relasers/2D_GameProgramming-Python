@@ -1,5 +1,6 @@
 import GameManager
 from obj_enemy import *
+from obj_boss import *
 import random
 
 class Timer:
@@ -17,8 +18,23 @@ class T_Stage1(Timer):
     PHASE_1, PHASE_2, PHASE_3, PHASE_4,PHASE_5 = 0, 1, 2, 3,4
 
     def handle_phase_1(self):
-        if self.t_phase_frame % 16 == 0:
+
+        if self.t_frame == 10:
             GameManager.enemy += [
+                Plask(GameManager.CLIENT_WIDTH, (GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE)/2,
+                        180, 0, 5, -0.1)
+            ]
+
+
+        if self.t_frame < 900:
+            if self.t_phase_frame % 60 == 0:
+                GameManager.enemy += [
+                Enemy64(2, GameManager.CLIENT_WIDTH, random.randint(0, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE),
+                        180, 0, 10, -0.1),
+            ]
+        elif 900 < self.t_frame:
+            if self.t_phase_frame % 16 == 0:
+                GameManager.enemy += [
                 Enemy64(2, GameManager.CLIENT_WIDTH, random.randint(0, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE),
                         180, 0, 10, -0.1),
             ]

@@ -43,6 +43,7 @@ class Ruby(Player):
 
         self.isshooting = False
         self.isalive = True
+        self.invincible = False
 
     def draw(self):
         if self.isalive is True:
@@ -110,21 +111,11 @@ class Ruby(Player):
                 PlayerBullet(0, 0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
                 PlayerBullet(0, 0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5)]
 
-        elif 400 <= GameManager.Player_Power < 500:
-            GameManager. p_bullet += [
-                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y + 16, 3+chaseangle, 0, 7, 0.5),
-                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y - 16, -3+chaseangle, 0, 7, 0.5),
-                PlayerBullet(0,0, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
-                PlayerBullet(0,0, self.point.x, self.point.y - 6, -1, 0, 5, 0.5),
-                PlayerBullet(0,0, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
-                PlayerBullet(0,0, self.point.x, self.point.y - 18, random.randint(-5, 5), 0, 5, 0.5),
-            ]
-
-        elif 500 <= GameManager.Player_Power:
-            GameManager. p_bullet += [
-                PlayerBulletChaser(0, 0, self.point.x, self.point.y, random.randint(-5, 5)+chaseangle, 0, 7, 0.5),
-                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y + 16, 3+chaseangle, 0, 7, 0.5),
-                PlayerBulletChaser(0, 0, self.point.x-3, self.point.y - 16, -3+chaseangle, 0, 7, 0.5),
+        elif 400 < GameManager.Player_Power:
+            GameManager.p_bullet += [
+                PlayerBulletChaser(0, 0, self.point.x, self.point.y, random.randint(-5, 5) + chaseangle, 0, 7, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x - 3, self.point.y + 16, 3 + chaseangle, 0, 7, 0.5),
+                PlayerBulletChaser(0, 0, self.point.x - 3, self.point.y - 16, -3 + chaseangle, 0, 7, 0.5),
                 PlayerBullet(1, 1, self.point.x, self.point.y + 6, 1, 0, 5, 0.5),
                 PlayerBullet(1, 1, self.point.x, self.point.y - 6, -1, 0, 5, 0.5),
                 PlayerBullet(1, 1, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
@@ -132,6 +123,7 @@ class Ruby(Player):
                 PlayerBullet(1, 1, self.point.x, self.point.y + 18, random.randint(-5, 5), 0, 5, 0.5),
                 PlayerBullet(1, 1, self.point.x, self.point.y - 18, random.randint(-5, 5), 0, 5, 0.5)
             ]
+
 
     def move(self):
         if self.xdir == self.ST_X_FORWARD:
