@@ -80,6 +80,10 @@ class BKStage1(BackGround):
             self.state += 1
         if GameManager.maintime == 3200:
             self.state += 1
+        if GameManager.maintime == 6500:
+            RES.res.snd_back_boss_1.set_volume(100)
+            RES.res.snd_back_boss_1.play()
+            self.state += 1
 
 
     def draw(self):
@@ -88,9 +92,9 @@ class BKStage1(BackGround):
         self.scrollingBG(RES.res.spr_back_1_5, self.x_back_1_5, 0, GameManager.CLIENT_WIDTH*2,1200)
         self.scrollingBG(RES.res.spr_back_1_4, self.x_back_1_4, -1800, GameManager.CLIENT_WIDTH,2400)
         if self.switch_boss is True:
-            RES.res.spr_back_1_2.opacify(random.randint(0, 1) / 10)
+            RES.res.spr_back_1_2.opacify(random.randint(3, 5) / 10)
             self.scrollingBG(RES.res.spr_back_1_2, self.x_back_1_2, 0, GameManager.CLIENT_WIDTH * 2,1200)
-            RES.res.spr_back_1_3.opacify(random.randint(1, 2) / 10)
+            RES.res.spr_back_1_3.opacify(random.randint(5, 7) / 10)
             self.scrollingBG(RES.res.spr_back_1_3, self.x_back_1_3, 0, GameManager.CLIENT_WIDTH*2,1200)
         self.scrollingBG(RES.res.spr_back_1_1,self.x_back_1_1,self.y_back_1_1,GameManager.CLIENT_WIDTH,2400)
 

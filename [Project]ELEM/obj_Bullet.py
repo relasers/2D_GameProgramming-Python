@@ -163,4 +163,80 @@ class EneBulletReAngler(EnemyBullet):
                                        GameManager.Player.point.y)+random.randint(-10,10)
             self.Counter -= 1
 
+class EneBulletAngleCleaner(EnemyBullet):
+    RememberSpd = 0
+    Counter = 0
+
+    def __init__(self, spriteid, spritecolor, x, y, angle, anglerate, speed, speedrate, size=int(32)):
+        self.SpriteID = spriteid
+        self.SpriteColor = spritecolor
+        self.point = Vec2D(x, y)
+        self.Angle = angle
+        self.AngleRate = anglerate
+        self.Speed = speed
+        self.RememberSpd = speed
+        self.SpeedRate = speedrate
+        self.Size = size
+        self.iscollisioned = False
+    def update(self):
+        self.rad = self.Angle * math.pi / 180
+
+        self.point.x += self.Speed * math.cos(self.rad)
+        self.point.y += self.Speed * math.sin(self.rad)
+
+        if self.Counter < 100:
+            self.Speed += self.SpeedRate
+            self.Angle += self.AngleRate
+
+
+        if self.Counter == 100:
+            self.Angle = random.randint(0,360)
+
+        self.Counter += 1
+
+
+
+class EneBulletHatcher(EnemyBullet):
+    RememberSpd = 0
+    Counter = 0
+    LIFE = 100
+    HIT = 64
+    img_Frame = 0
+    def __init__(self, spriteid, spritecolor, x, y, angle, anglerate, speed, speedrate, size=int(192)):
+        self.SpriteID = spriteid
+        self.SpriteColor = spritecolor
+        self.point = Vec2D(x, y)
+        self.Angle = angle
+        self.AngleRate = anglerate
+        self.Speed = speed
+        self.RememberSpd = speed
+        self.SpeedRate = speedrate
+        self.Size = size
+        self.iscollisioned = False
+    def update(self):
+        self.rad = self.Angle * math.pi / 180
+
+        self.point.x += self.Speed * math.cos(self.rad)
+        self.point.y += self.Speed * math.sin(self.rad)
+
+        if self.LIFE < 0:
+            for i in range(16):
+                GameManager.e_bullet += [
+                    # EnemyBullet(random.randint(0, 5), random.randint(0, 6), self.point.x, self.point.y - 18, random.randint(0, 359), 0, 2, 0)
+                    EnemyBullet(5, self.SpriteColor, self.point.x, self.point.y - 18,
+                                i*22 + random.randint(-5,5),
+                                random.randint(1, 2) / 100, 1, 0.01)
+                ]
+                self.HP = -10
+
+        self.LIFE -= 1
+        self.img_Frame = (self.img_Frame + 1) % 4
+
+    def draw(self):
+        RES.res.spr_Fire192.clip_rotate_draw(self.rad, self.img_Frame * 192, self.SpriteColor * 192, 192, 192, self.point.x,
+                                              self.point.y, self.Size, self.Size)
+        drawhitbox(self.point, self.HIT)
+
+
+
 

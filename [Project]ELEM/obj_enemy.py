@@ -50,6 +50,8 @@ class Enemy(Actor):
             return True
 
     def KIA(self):
+        GameManager.particle += [
+            ExplodeEnemy(0, self.SpriteID, self.point.x, self.point.y, True, self.Size, True, 0, 12, 1)]
         pass
 
 ########################################################################################################################
@@ -115,6 +117,62 @@ class Enemy64(Enemy):
         ]
 
 ########################################################################################################################
+class Enemy_carrier(Enemy64):
+    ST_STAND, ST_SHOOT = 0, 1
+    HP = 15
+    HIT = 64
+    def shoot(self):
+        pass
+
+    def handle_stand(self):
+        self.stand_frame += 1
+        if self.stand_frame > 50:
+            self.shoot_frame = 0
+            self.state = self.ST_SHOOT
+
+    def handle_shoot(self):
+        self.shoot_frame += 1
+        if self.shoot_frame % 10 == 0:
+            self.shoot()
+        if self.shoot_frame > 300:
+            self.stand_frame = 0
+            self.state = self.ST_STAND
+
+    handle_state = {
+        ST_STAND: handle_stand,
+        ST_SHOOT: handle_shoot
+    }
+
+    def update(self):
+        self.img_rad = (self.img_rad + 0.1) % 360
+        self.img_tick += 1
+        if self.img_tick > 10:
+            self.img_frame = (self.img_frame + 1) % 6
+            self.img_tick = 0
+
+        self.handle_state[self.state](self)
+        self.move()
+    def draw(self):
+        RES.res.spr_carrier.opacify(0.7)
+        RES.res.spr_carrier.clip_rotate_draw(0, self.img_frame * 128, self.SpriteID * 128, 128, 128,
+                                             self.point.x, self.point.y)
+        drawhitbox(self.point, self.HIT)
+
+    def KIA(self):
+        for i in range(5):
+            GameManager.item += [
+            Item(self.point.x, self.point.y,0,random.randint(0,360),0,5,-0.1,32),
+        ]
+
+        dice = random.randint(0,10)
+        if dice == 0:
+                GameManager.item += [
+                    Item(self.point.x, self.point.y, 1, random.randint(0, 360), 0, 5, -0.1, 32),
+                ]
+
+        GameManager.particle += [
+            ExplodeEnemy(0, self.SpriteID, self.point.x, self.point.y, True, self.Size, True, 0, 12, 1)]
+########################################################################################################################
 class Enemy_spiral(Enemy64):
     ST_STAND, ST_SHOOT = 0, 1
     HP = 15
@@ -161,6 +219,59 @@ class Enemy_spiral(Enemy64):
             GameManager.item += [
             Item(self.point.x, self.point.y,0,random.randint(0,360),0,5,-0.1,32),
         ]
+        GameManager.particle += [
+            ExplodeEnemy(0, self.SpriteID, self.point.x, self.point.y, True, self.Size, True, 0, 12, 1)]
+############################################################################################################################
+class Enemy_stright_spr(Enemy64):
+    ST_STAND, ST_SHOOT = 0, 1
+    HP = 15
+
+    def shoot(self):
+        for i in range(5):
+            GameManager.e_bullet += [
+                # EnemyBullet(random.randint(0, 5), random.randint(0, 6), self.point.x, self.point.y - 18, random.randint(0, 359), 0, 2, 0)
+                EnemyBullet(1, 4, self.point.x, self.point.y - 18,
+                            150 + 20*i,
+                            0, 8, 0.01)
+            ]
+
+    def handle_stand(self):
+        self.stand_frame += 1
+        if self.stand_frame > 50:
+            self.shoot_frame = 0
+            self.state = self.ST_SHOOT
+
+    def handle_shoot(self):
+        self.shoot_frame += 1
+        if self.shoot_frame % 10 == 0:
+            self.shoot()
+        if self.shoot_frame > 300:
+            self.stand_frame = 0
+            self.state = self.ST_STAND
+
+    handle_state = {
+        ST_STAND: handle_stand,
+        ST_SHOOT: handle_shoot
+    }
+
+    def update(self):
+        self.img_rad = (self.img_rad + 0.1) % 360
+        self.img_tick += 1
+        if self.img_tick > 10:
+            self.img_frame = (self.img_frame + 1) % 8
+            self.img_tick = 0
+
+        self.handle_state[self.state](self)
+        self.move()
+
+    def KIA(self):
+        for i in range(5):
+            GameManager.item += [
+                Item(self.point.x, self.point.y, 0, random.randint(0, 360), 0, 5, -0.1, 32),
+            ]
+        GameManager.particle += [
+            ExplodeEnemy(0, self.SpriteID, self.point.x, self.point.y, True, self.Size, True, 0, 12, 1)]
+
 
 ########################################################################################################################
 class Enemy_Gorgon(Enemy64):
@@ -245,8 +356,91 @@ class Enemy_Rounder(Enemy64):
 
         self.handle_state[self.state](self)
         self.move()
-class Enemy_shotgun(Enemy):
-    pass
+#####################################################################################################################
+class Enemy_Linear(Enemy64):
+    ST_STAND, ST_SHOOT = 0, 1
+    HP = 10
+    def shoot(self):
+        for i in range(5):
+            GameManager.e_bullet += [
+                EnemyBullet(2, 2, self.point.x, self.point.y - 18,
+                            calcangle(self.point.x, self.point.y, GameManager.Player.point.x,
+                                      GameManager.Player.point.y),
+                            0, 3 + i, 0.01)
+            ]
+
+    def handle_stand(self):
+        self.stand_frame += 1
+        if self.stand_frame > 25:
+            self.shoot_frame = 0
+            self.state = self.ST_SHOOT
+
+    def handle_shoot(self):
+        self.shoot_frame += 1
+        if self.shoot_frame % 30 == 0:
+            self.shoot()
+        if self.shoot_frame > 300:
+            self.stand_frame = 0
+            self.state = self.ST_STAND
+
+    handle_state = {
+        ST_STAND: handle_stand,
+        ST_SHOOT: handle_shoot
+    }
+
+    def update(self):
+        self.img_rad = (self.img_rad + 0.1) % 360
+        self.img_tick += 1
+        if self.img_tick > 10:
+            self.img_frame = (self.img_frame + 1) % 8
+            self.img_tick = 0
+
+        self.handle_state[self.state](self)
+        self.move()
+
+###############################################################################################################
+
+class Enemy_shotgun(Enemy64):
+    ST_STAND, ST_SHOOT = 0, 1
+    HP = 10
+
+    def shoot(self):
+        for i in range(6):
+            GameManager.e_bullet += [
+                EnemyBullet(4, 5, self.point.x, self.point.y - 18,
+                            calcangle(self.point.x, self.point.y, GameManager.Player.point.x,
+                                      GameManager.Player.point.y)+random.randint(-90,90),
+                            0, random.randint(3,7), 0.01)
+            ]
+
+    def handle_stand(self):
+        self.stand_frame += 1
+        if self.stand_frame > 25:
+            self.shoot_frame = 0
+            self.state = self.ST_SHOOT
+
+    def handle_shoot(self):
+        self.shoot_frame += 1
+        if self.shoot_frame % 30 == 0:
+            self.shoot()
+        if self.shoot_frame > 300:
+            self.stand_frame = 0
+            self.state = self.ST_STAND
+
+    handle_state = {
+        ST_STAND: handle_stand,
+        ST_SHOOT: handle_shoot
+    }
+
+    def update(self):
+        self.img_rad = (self.img_rad + 0.1) % 360
+        self.img_tick += 1
+        if self.img_tick > 10:
+            self.img_frame = (self.img_frame + 1) % 8
+            self.img_tick = 0
+
+        self.handle_state[self.state](self)
+        self.move()
 ########################################################################################################################
 
 
@@ -330,3 +524,5 @@ class Enemy_fairy(Enemy):
         GameManager.item += [
             Item(self.point.x, self.point.y, 2, random.randint(0, 360), 0, 5, -0.1, 32),
         ]
+        GameManager.particle += [
+            ExplodeEnemy(0, self.SpriteID, self.point.x, self.point.y, True, self.Size, True, 0, 12, 1)]

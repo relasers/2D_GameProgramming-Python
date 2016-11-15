@@ -1,6 +1,7 @@
 from pico2d import *
 import FrameWork
 import GameManager
+import Scene_GameOver
 from BackGround import *
 from obj_Bullet import *
 from obj_Player import *
@@ -89,7 +90,10 @@ def handle_events():
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_q):
             GameManager.Player_Power = min(500,GameManager.Player_Power+100)
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
-            GameManager.background.state = (GameManager.background.state + 1 ) % 4
+            RES.res.snd_back_boss_1.repeat_play()
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_k):
+            GameManager.live = 1
+
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_o): # Toggle Collision Box
             GameManager.CollisionBox = not GameManager.CollisionBox
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_p): # Toggle Collision Box
@@ -195,8 +199,6 @@ def update_running():
         if enemys.isDestroy() is True:
             if enemys.HP < 0:
                 RES.res.snd_destroy.play()
-                GameManager.particle += [
-                    ExplodeEnemy(0, enemys.SpriteID, enemys.point.x, enemys.point.y, True, enemys.Size, True, 0, 12, 1)]
                 enemys.KIA()
             GameManager.enemy.remove(enemys)
             GameManager.score += 10
@@ -212,12 +214,15 @@ def update_running():
 #################<timer Update>##############################################################################
     GameManager.maintime += 1
 
+    if GameManager.live <= 0:
+        FrameWork.push_state(Scene_GameOver)
+
 def Player_Power_Upgrade():
     if GameManager.Player_Power < 100:
-        GameManager.Player_Power = min(500, GameManager.Player_Power + 2)
+        GameManager.Player_Power = min(500, GameManager.Player_Power + 4)
     elif 100 <= GameManager.Player_Power < 200:
-        GameManager.Player_Power = min(500, GameManager.Player_Power + 0.5)
+        GameManager.Player_Power = min(500, GameManager.Player_Power + 1)
     elif 200 <= GameManager.Player_Power < 300:
-        GameManager.Player_Power = min(500, GameManager.Player_Power + 0.25)
+        GameManager.Player_Power = min(500, GameManager.Player_Power + 0.5)
     else:
         GameManager.Player_Power = min(500, GameManager.Player_Power + 0.1)

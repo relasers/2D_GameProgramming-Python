@@ -40,6 +40,8 @@ def buildgame():
     global background
     global timer
     global particle
+    global maintime
+    global score
 
     Player = Ruby(600, 600)
     background = BKStage1()
@@ -52,6 +54,8 @@ def buildgame():
     item = []
     particle = []
 
-    live = 3
-    curr_bomb = 3
+    live = 500
+    curr_bomb = 500
     Player_Power = 0
+    maintime = 0
+    score = 0
