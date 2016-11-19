@@ -38,6 +38,8 @@ class Ruby(Player):
         self.frametick = 0
         self.shottick = 0
 
+        self.invincibletime = 0
+
         self.speed = self.HIGH_SPEED
         self.slowmode = False
 
