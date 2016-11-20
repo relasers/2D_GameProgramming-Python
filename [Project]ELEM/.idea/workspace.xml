@@ -54,16 +54,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GameManager.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GameManager.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="988">
-              <caret line="56" column="14" selection-start-line="56" selection-start-column="14" selection-end-line="56" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Timer.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Timer.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -100,11 +90,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="obj_Player.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="obj_Player.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/obj_Player.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="456">
               <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Scene_Ranking.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Resources/Sounds/BGM/Scene_Ranking.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -179,6 +179,7 @@
         <option value="$PROJECT_DIR$/../.git/logs/HEAD" />
         <option value="$PROJECT_DIR$/../.git/logs/refs/heads/master" />
         <option value="$PROJECT_DIR$/obj_Player.py" />
+        <option value="$PROJECT_DIR$/Resources/Sounds/BGM/Scene_Ranking.py" />
       </list>
     </option>
   </component>
@@ -497,13 +498,13 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\HomeWork\Secnd_second\2DGP\Project\[Project]ELEM" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\HomeWork\Secnd_second\2DGP\Project\[Project]ELEM\Objects\Mover" />
       <recent name="D:\HomeWork\Secnd_second\2DGP\Project\[Project]ELEM\Library" />
       <recent name="D:\HomeWork\Secnd_second\2DGP\Project\[Project]ELEM\Scenes" />
+      <recent name="D:\HomeWork\Secnd_second\2DGP\Project\[Project]ELEM" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\HomeWork\Secnd_second\2DGP\Project\[Project]ELEM" />
     </key>
   </component>
@@ -805,11 +806,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Resources/Images/BackGrounds/Stage_2/Back_2_2_day.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Resources/Images/BackGrounds/Stage_2/Back_2_2_night.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -988,7 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
           <caret line="7" column="40" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1127,6 +1122,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
           <caret line="40" column="31" selection-start-line="40" selection-start-column="31" selection-end-line="40" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Resources/Sounds/BGM/Scene_Ranking.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
