@@ -15,8 +15,10 @@ import random
 name = "MainState"
 isPause = False
 def enter():
+    global isPause
     # open_canvas(FrameWork.CLIENT_WIDTH,FrameWork.CLIENT_HEIGHT)
     GameManager.buildgame()
+    isPause = False
     pass
 
 
@@ -26,12 +28,15 @@ def exit():
 
 
 def update():
+    global isPause
     if isPause is False:
         update_running()
     pass
 
 
 def draw():
+    global isPause
+
     clear_canvas()
 
     GameManager.background.draw()
@@ -169,8 +174,12 @@ def update_running():
 
     for bullets in GameManager.e_bullet:
         if bullets.isHit(GameManager.Player) is True and bullets.HP > 0:
-            GameManager.live -= 1
-            GameManager.Player_Power *= 0.75
+            if GameManager.Player.IsInvincible() is False:
+                GameManager.live -= 1
+                GameManager.Player_Power *= 0.75
+                GameManager.Player.setInvincibeTime(50)
+                GameManager.Player.PlayerHIT()
+
             bullets.HP -= 10
         if len(GameManager.bomb) > 0:
             if bullets.isHit(GameManager.bomb[0]) is True:

@@ -1,6 +1,7 @@
 from vector2D import *
 from pico2d import *
 from obj_Bullet import *
+from obj_Particle import *
 import GameManager
 import RES
 import random
@@ -10,14 +11,19 @@ import math
 class Player(Actor):
     ST_X_NONE, ST_X_FORWARD, ST_X_BAKWARD = 0, 1, 2
     ST_Y_NONE, ST_Y_UP, ST_Y_DOWN = 3, 4, 5
-    STAT_LEFT = 0
+
     HIGH_SPEED = 10
     LOW_SPEED = 4
+
+    INVINCIBLE_TIME = 100
 
     TICK_FRAME = 5
     TICK_SHOT = 5
 
     HIT = 4
+
+
+
 
     pass
 
@@ -45,9 +51,14 @@ class Ruby(Player):
 
         self.isshooting = False
         self.isalive = True
-        self.invincible = False
 
     def draw(self):
+        if self.invincibletime > 0:
+            RES.res.spr_ruby.opacify(0.25 + random.randint(0,5)/10 )
+        else:
+            RES.res.spr_ruby.opacify(1)
+
+
         if self.isalive is True:
             if self.xdir == self.ST_X_BAKWARD:
                 RES.res.spr_ruby.clip_draw(self.frame * 64, 0, 64, 64, self.point.x, self.point.y)
@@ -83,6 +94,9 @@ class Ruby(Player):
         if self.shottick % self.TICK_SHOT == 0 and self.isshooting is True and self.isalive is True:
             self.shoot()
             self.shottick = 0
+
+        if self.invincibletime > 0:
+            self.invincibletime -= 1
 
     def shoot(self):
         chaseangle = 0
@@ -146,6 +160,8 @@ class Ruby(Player):
             self.point.y = 32
         if GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE < self.point.y + 32:
             self.point.y = GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE - 32
+
+
 
     def handle_chara(self, event):
 
@@ -222,3 +238,13 @@ class Ruby(Player):
 
             if event.key == SDLK_z:
                 self.isshooting = False
+
+    def IsInvincible(self):
+        return self.invincibletime > 0
+
+    def setInvincibeTime(self,time):
+        self.invincibletime = time
+
+    def PlayerHIT(self):
+        GameManager.particle += [
+            MagicBlast(self.point.x, self.point.y, False)]

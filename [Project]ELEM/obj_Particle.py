@@ -24,8 +24,7 @@ class Particle(Actor):
 
     Fade_out = False
     def __init__(self, spriteid, spritecolor, x, y,fadeout,size,isExpansion,Expansionmode,ExpSize,ExpRate):
-        self.point.x = x
-        self.point.y = y
+        self.point = Vec2D(x, y)
 
         self.spr_id = spriteid
         self.spr_color = spritecolor
@@ -77,23 +76,22 @@ class ExplodeEnemy(Particle):
                                                    self.img_Size)
 
 class MagicBlast(Actor):
-
+    MX_frame = 16
+    img_frame = 0
+    img_tick = 0
     def __init__(self,x,y,israndom):
-        self.MX_frame = 16
-        self.img_frame = 0
-        self.img_tick = 0
-
-        self.point.x = x
-        self.point.y = y
+        self.point = Vec2D(x, y)
 
         if israndom is True:
             self.point.x += random.randint(-128, 128)
             self.point.y += random.randint(-128, 128)
 
+    def isDestroy(self):
+        if self.img_frame > 16:
+            return True
 
     def update(self):
         self.img_tick += 1
-
         if self.img_tick > 2:
             self.img_frame += 1
             self.img_tick = 0
@@ -101,9 +99,6 @@ class MagicBlast(Actor):
     def draw(self):
         RES.res.spr_magicblast.clip_rotate_draw(0, self.img_frame*256, 0  , 128, 128, self.point.x, self.point.y, 256,
                                                   256)
-    def isDestroy(self):
-        if self.img_frame > 16:
-            return True
 
 class Warning(Particle):
     LIFE = 360
