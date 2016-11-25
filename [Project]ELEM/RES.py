@@ -47,6 +47,9 @@ class Res:
     spr_back_gameover_gray = None
     spr_press_backto = None
 
+    spr_ranklens = None
+    spr_back_rankpage = None
+
     spr_back_logo = None
     spr_back_black = None
     spr_back_1_1 = None
@@ -119,6 +122,9 @@ class Res:
         self.spr_back_gameover = load_image('Resources/Images/BackGrounds/Main/GameOver.png')
         self.spr_back_gameover_gray = load_image('Resources/Images/BackGrounds/Main/GameOver-gray.png')
         self.spr_press_backto = load_image('Resources/Images/BackGrounds/Main/BackTo.png')
+
+        self.spr_ranklens =  load_image('Resources/Images/BackGrounds/Main/800lens.png')
+        self.spr_back_rankpage =  load_image('Resources/Images/BackGrounds/Main/RankPage.png')
 
         self.spr_back_1_1 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_1.png')
         self.spr_back_1_2 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_1_2.png')
