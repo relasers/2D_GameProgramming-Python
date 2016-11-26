@@ -98,7 +98,6 @@ class Res:
         self.spr_bullet64 = load_image('Resources/Images/Bullets/Bullet64.png')
         self.spr_Fire192 = load_image('Resources/Images/Bullets/Fire_192.png')
 
-
         self.spr_boss1 = load_image('Resources/Images/Characters/Enemy/Boss1.png')
         self.spr_boss2 = load_image('Resources/Images/Characters/Enemy/Boss1.png')
 
