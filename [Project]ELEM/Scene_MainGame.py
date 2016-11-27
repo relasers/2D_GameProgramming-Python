@@ -2,6 +2,7 @@ from pico2d import *
 import FrameWork
 import GameManager
 import Scene_GameOver
+import Scene_Ranking
 from BackGround import *
 from obj_Bullet import *
 from obj_Player import *
@@ -14,11 +15,14 @@ import random
 
 name = "MainState"
 isPause = False
+end_timer = 300
+
 def enter():
-    global isPause
+    global isPause,end_timer
     # open_canvas(FrameWork.CLIENT_WIDTH,FrameWork.CLIENT_HEIGHT)
     GameManager.buildgame()
     isPause = False
+    end_timer = 300
     pass
 
 
@@ -35,7 +39,7 @@ def update():
 
 
 def draw():
-    global isPause
+    global isPause, end_timer
 
     clear_canvas()
 
@@ -79,6 +83,11 @@ def draw():
     RES.res.font_elem.draw(GameManager.CLIENT_WIDTH/2 + 300, GameManager.CLIENT_HEIGHT - 32, " Score :: %s " % GameManager.score, (155, 155, 155))
     if isPause is True:
         RES.res.spr_pause.draw(GameManager.CLIENT_WIDTH/2, GameManager.CLIENT_HEIGHT/2)
+
+    if GameManager.GameClear is True:
+        RES.res.font_elem.draw(GameManager.CLIENT_WIDTH / 2 - 100, GameManager.CLIENT_HEIGHT/2,
+                               " Thank you For Playing! " , (255, 255, 255))
+        end_timer -= 1
 
     update_canvas()
     pass
@@ -125,6 +134,7 @@ def resume():
     pass
 
 def update_running():
+    global end_timer
 
     GameManager.timer.update()
     GameManager.Player.update()
@@ -224,7 +234,13 @@ def update_running():
     GameManager.maintime += 1
 
     if GameManager.live <= 0:
+        Record_Rank()
         FrameWork.push_state(Scene_GameOver)
+
+    if GameManager.GameClear is True and end_timer < 0:
+        Record_Rank()
+        FrameWork.push_state(Scene_Ranking)
+
 
 def Player_Power_Upgrade():
     if GameManager.Player_Power < 100:
@@ -235,3 +251,15 @@ def Player_Power_Upgrade():
         GameManager.Player_Power = min(500, GameManager.Player_Power + 0.5)
     else:
         GameManager.Player_Power = min(500, GameManager.Player_Power + 0.1)
+
+def Record_Rank():
+    f = open('Record.txt', 'r')
+    score_data = json.load(f)
+    f.close()
+    score_data.append({'PlayTime': GameManager.maintime, 'Score': GameManager.score, 'Live': GameManager.live})
+
+    print(score_data)
+
+    f = open('Record.txt', 'w')
+    json.dump(score_data, f)
+    f.close()

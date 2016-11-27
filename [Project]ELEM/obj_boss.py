@@ -52,6 +52,8 @@ class Boss(Actor):
         for i in range(48):
             GameManager.particle += [
             MagicBlast(self.point.x, self.point.y , True)]
+
+        GameManager.GameClear = True
         pass
 
 
@@ -274,7 +276,7 @@ class Plask(Boss):
 
         if 2500 < self.HP:
             self.shoot_frame += 1
-            if self.shoot_frame % 5 == 0:
+            if self.shoot_frame % 8 == 0:
                 self.shoot_Hurrycane(False)
             if self.shoot_frame > 200:
                 self.stand_frame = 0
@@ -282,7 +284,7 @@ class Plask(Boss):
         else:
 
             self.shoot_frame += 1
-            if self.shoot_frame % 2 == 0:
+            if self.shoot_frame % 5 == 0:
                 self.shoot_Hurrycane(True)
             if self.shoot_frame > 200:
                 self.stand_frame = 0

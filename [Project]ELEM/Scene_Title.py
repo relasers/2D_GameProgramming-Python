@@ -1,6 +1,8 @@
 from pico2d import *
+import GameManager
 import RES
 import FrameWork
+import Scene_Ranking
 import Scene_MainGame
 import math
 name = "TitleState"
@@ -46,6 +48,8 @@ def draw():
     RES.res.spr_press_start.opacify(opacify)
     RES.res.spr_press_start.draw(600, (int)(startpos_y) )
 
+    RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT - 25, " Press R to show Record " , (0, 255, 255))
+
     update_canvas()
     pass
 
@@ -59,6 +63,9 @@ def handle_events():
             FrameWork.quit()
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
             FrameWork.push_state(Scene_MainGame)
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_r):
+            FrameWork.push_state(Scene_Ranking)
+
     pass
 
 

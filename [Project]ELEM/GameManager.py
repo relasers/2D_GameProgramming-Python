@@ -19,7 +19,7 @@ bomb = []
 enemy = []
 item = []
 particle = []
-
+GameClear = False
 
 live = 0
 curr_bomb = 0
@@ -43,6 +43,8 @@ def buildgame():
     global maintime
     global score
 
+    global GameClear
+
     Player = Ruby(600, 600)
     background = BKStage1()
     timer = T_Stage1()
@@ -59,3 +61,5 @@ def buildgame():
     Player_Power = 0
     maintime = 0
     score = 0
+
+    GameClear = False
