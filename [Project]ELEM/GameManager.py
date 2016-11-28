@@ -56,8 +56,8 @@ def buildgame():
     item = []
     particle = []
 
-    live = 500
-    curr_bomb = 500
+    live = 10
+    curr_bomb = 3
     Player_Power = 0
     maintime = 0
     score = 0

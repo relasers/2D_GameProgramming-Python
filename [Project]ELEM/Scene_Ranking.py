@@ -21,6 +21,8 @@ opacify = 0.5
 
 
 def enter():
+    RES.res.snd_ranking.set_volume(100)
+    RES.res.snd_ranking.repeat_play()
     pass
 
 def exit():
@@ -55,7 +57,7 @@ def draw():
 
     RES.res.font_elem.draw(0, GameManager.CLIENT_HEIGHT - 25, " Press space to back ", (0, 255, 255))
 
-    RES.res.font_elem.draw(600, 700, '[Play Record]', (255, 100, 100))
+    RES.res.font_elem.draw(500, 700, '[Play Record]', (255, 100, 100))
 
     f = open('Record.txt', 'r')
     score_data = json.load(f)
@@ -66,9 +68,18 @@ def draw():
 
     y = 0
     for score in score_data:
-        RES.res.font_elem.draw(400, 600 - y * 40, ' ::: Score : %3d ::: Remain Live : %3d ::: PlayTime : %4.1f' %
-                  (score['Score'], score['Live'], score['PlayTime']),
+        RES.res.font_elem.draw(200, 600 - y * 40, ' %3d . ' %
+                               (y+1),
+                               (255, 255, 255))
+        RES.res.font_elem.draw(300, 600 - y * 40, ' Score : %3d ' %
+                  (score['Score']),
                   (255, 255, 255))
+        RES.res.font_elem.draw(500, 600 - y * 40, ' Remain Live : %3d ' %
+                               (score['Live']),
+                               (255, 255, 255))
+        RES.res.font_elem.draw(700, 600 - y * 40, '  PlayTime : %4d' %
+                               (score['PlayTime']),
+                               (255, 255, 255))
         y += 1
 
     update_canvas()

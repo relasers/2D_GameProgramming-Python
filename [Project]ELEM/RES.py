@@ -60,21 +60,11 @@ class Res:
     spr_back_1_6 = None
     spr_back_1_7 = None
 
-    spr_back_2_0 = None
-    spr_back_2_1 = None
-    spr_back_2_2_d = None
-    spr_back_2_2_n = None
-    spr_back_2_3_d = None
-    spr_back_2_3_n = None
-    spr_back_2_4_d = None
-    spr_back_2_4_n = None
-    spr_back_2_5_d = None
-    spr_back_2_5_n = None
-
     snd_main = None
     snd_gameover = None
     snd_back_1 = None
     snd_back_boss_1 = None
+    snd_ranking = None
 
     snd_shoot = None
     snd_ruby_bomb = None
@@ -133,22 +123,11 @@ class Res:
         self.spr_back_1_6 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_4.png')
         self.spr_back_1_7 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_5.png')
 
-        self.spr_back_2_0 = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_0_0.png')
-        self.spr_back_2_1 = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_0_1.png')
-        self.spr_back_2_2_d = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_1_day.png')
-        self.spr_back_2_2_n = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_1_night.png')
-        self.spr_back_2_3_d = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_2_day.png')
-        self.spr_back_2_3_n = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_2_night.png')
-        self.spr_back_2_4_d = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_3_day.png')
-        self.spr_back_2_4_n = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_3_night.png')
-        self.spr_back_2_5_d = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_4_day.png')
-        self.spr_back_2_5_n = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_4_night.png')
-
         self.snd_main = load_music('Resources/Sounds/BGM/fogotten_temple.ogg')
         self.snd_back_1 = load_music('Resources/Sounds/BGM/Fable-Mili.ogg')
         self.snd_back_boss_1 = load_music('Resources/Sounds/BGM/Nemesis.ogg')
         self.snd_gameover = load_music('Resources/Sounds/BGM/Aases_Death.ogg')
-
+        self.snd_ranking = load_music('Resources/Sounds/BGM/Record.ogg')
         self.snd_shoot = load_wav('Resources/Sounds/SE/plst00.wav')
         self.snd_shoot.set_volume(10)
 

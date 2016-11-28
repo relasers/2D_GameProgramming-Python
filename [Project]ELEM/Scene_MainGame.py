@@ -106,7 +106,7 @@ def handle_events():
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
             RES.res.snd_back_boss_1.repeat_play()
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_k):
-            GameManager.live = 1
+            GameManager.live += 1
 
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_o): # Toggle Collision Box
             GameManager.CollisionBox = not GameManager.CollisionBox

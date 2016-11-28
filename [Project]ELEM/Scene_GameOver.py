@@ -13,7 +13,7 @@ opacify = 0.5
 
 def enter():
     RES.res.snd_gameover.set_volume(100)
-    RES.res.snd_gameover.play()
+    RES.res.snd_gameover.repeat_play()
 
     pass
 

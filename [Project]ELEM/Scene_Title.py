@@ -15,7 +15,7 @@ opacify = 0.5
 
 def enter():
     RES.res.snd_main.set_volume(100)
-    RES.res.snd_main.play()
+    RES.res.snd_main.repeat_play()
 
     pass
 
