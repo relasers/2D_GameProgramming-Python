@@ -8,7 +8,6 @@ import random
 class BackGround:
     pass
 
-
 class BKStage1(BackGround):
 
     PHASE1, PHASE2, PHASE3, PHASE4 = 0, 1, 2, 3
