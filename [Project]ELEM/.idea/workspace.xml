@@ -69,8 +69,8 @@
       <file leaf-file-name="vector2D.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vector2D.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="513">
-              <caret line="69" column="23" selection-start-line="64" selection-start-column="7" selection-end-line="69" selection-end-column="23" />
+            <state relative-caret-position="285">
+              <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -155,7 +155,6 @@
         <option value="$PROJECT_DIR$/obj_Actor.py" />
         <option value="$PROJECT_DIR$/pico2d.py" />
         <option value="$PROJECT_DIR$/Scene_Logo.py" />
-        <option value="$PROJECT_DIR$/vector2D.py" />
         <option value="$PROJECT_DIR$/FrameWork.py" />
         <option value="$PROJECT_DIR$/obj_Item.py" />
         <option value="$PROJECT_DIR$/../2013182010.txt" />
@@ -179,6 +178,7 @@
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/BackGround.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/vector2D.py" />
       </list>
     </option>
   </component>
@@ -229,7 +229,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -348,7 +348,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -978,8 +978,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vector2D.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="69" column="23" selection-start-line="64" selection-start-column="7" selection-end-line="69" selection-end-column="23" />
+        <state relative-caret-position="285">
+          <caret line="57" column="0" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
       </provider>
