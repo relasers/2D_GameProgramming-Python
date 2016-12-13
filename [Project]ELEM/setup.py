@@ -8,7 +8,8 @@ executables = [cx_Freeze.Executable(script='main.py', icon='ELEM.ico')]
 
 cx_Freeze.setup(
     name='Project ELEM',
+    version = "1.0",
     options={'build_exe': {'packages':['pico2d'],
-                           'include_files':['./Resources/']}},
+                           'include_files':['./Resources/','./SDL2/','Record.txt']}},
     executables = executables
 )
