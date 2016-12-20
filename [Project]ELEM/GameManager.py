@@ -25,6 +25,7 @@ live = 0
 curr_bomb = 0
 Player_Power = 0.0
 maintime = 0
+total_time = 0
 score = 0
 
 def buildgame():
@@ -41,6 +42,7 @@ def buildgame():
     global timer
     global particle
     global maintime
+    global total_time
     global score
 
     global GameClear
@@ -60,6 +62,7 @@ def buildgame():
     curr_bomb = 3
     Player_Power = 0
     maintime = 0
+    total_time = 0
     score = 0
 
     GameClear = False

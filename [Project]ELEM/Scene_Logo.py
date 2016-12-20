@@ -30,10 +30,10 @@ def draw():
     global opacify
 
     clear_canvas()
-    RES.res.spr_back_black.opacify(opacify)
-    RES.res.spr_back_black.clip_draw_to_origin(0,0,64,64,0, 0,1200,800)
-    # RES.res.spr_back_logo.opacify(opacify)
-    # RES.res.spr_back_logo.clip_draw_to_origin(0,0,1200,800,0, 0)
+    RES.res.spr_back_blackscreen.opacify(opacify)
+    RES.res.spr_back_blackscreen.draw(600,384)
+    #RES.res.spr_back_logo.opacify(opacify)
+    #RES.res.spr_back_logo.clip_draw_to_origin(0,0,1200,800,0, 0)
     RES.res.spr_back_logo.draw(600,400)
     update_canvas()
     pass

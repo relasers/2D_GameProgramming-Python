@@ -85,8 +85,14 @@ def draw():
         RES.res.spr_pause.draw(GameManager.CLIENT_WIDTH/2, GameManager.CLIENT_HEIGHT/2)
 
     if GameManager.GameClear is True:
-        RES.res.font_elem.draw(GameManager.CLIENT_WIDTH / 2 - 100, GameManager.CLIENT_HEIGHT/2,
-                               " Thank you For Playing! " , (255, 255, 255))
+        if type(GameManager.background) is BKStage1:
+            RES.res.font_elem.draw(GameManager.CLIENT_WIDTH / 2 - 100, GameManager.CLIENT_HEIGHT/2,
+                               " Stage Clear. " , (255, 255, 255))
+        else:
+            RES.res.font_elem.draw(GameManager.CLIENT_WIDTH / 2 - 100, GameManager.CLIENT_HEIGHT / 2,
+                                   " Thank you For Playing! ", (255, 255, 255))
+
+
         end_timer -= 1
 
     update_canvas()
@@ -107,6 +113,9 @@ def handle_events():
             RES.res.snd_back_boss_1.repeat_play()
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_k):
             GameManager.live += 1
+        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_i):
+            End_Stage()
+
 
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_o): # Toggle Collision Box
             GameManager.CollisionBox = not GameManager.CollisionBox
@@ -232,14 +241,14 @@ def update_running():
 
 #################<timer Update>##############################################################################
     GameManager.maintime += 1
+    GameManager.total_time += 1
 
     if GameManager.live <= 0:
         Record_Rank()
         FrameWork.push_state(Scene_GameOver)
 
     if GameManager.GameClear is True and end_timer < 0:
-        Record_Rank()
-        FrameWork.push_state(Scene_Ranking)
+        End_Stage()
 
 
 def Player_Power_Upgrade():
@@ -256,10 +265,23 @@ def Record_Rank():
     f = open('Record.txt', 'r')
     score_data = json.load(f)
     f.close()
-    score_data.append({'PlayTime': GameManager.maintime, 'Score': GameManager.score, 'Live': GameManager.live})
+    score_data.append({'PlayTime': GameManager.total_time, 'Score': GameManager.score, 'Live': GameManager.live})
 
     print(score_data)
 
     f = open('Record.txt', 'w')
     json.dump(score_data, f)
     f.close()
+
+def End_Stage():
+    global end_timer
+    if type(GameManager.background) is BKStage1:
+        GameManager.maintime = 0
+        GameManager.background = BKStage2()
+        GameManager.Timer = T_Stage2()
+        GameManager.GameClear = False
+        end_timer = 300
+
+    elif type(GameManager.background) is BKStage2:
+        Record_Rank()
+        FrameWork.push_state(Scene_Ranking)

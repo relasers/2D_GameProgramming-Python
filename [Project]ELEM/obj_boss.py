@@ -54,6 +54,7 @@ class Boss(Actor):
             MagicBlast(self.point.x, self.point.y , True)]
 
         GameManager.GameClear = True
+        GameManager.background.state += 1
         pass
 
 

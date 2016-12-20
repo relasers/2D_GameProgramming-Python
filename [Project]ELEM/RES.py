@@ -52,6 +52,7 @@ class Res:
 
     spr_back_logo = None
     spr_back_black = None
+    spr_back_blackscreen = None
     spr_back_1_1 = None
     spr_back_1_2 = None
     spr_back_1_3 = None
@@ -60,13 +61,38 @@ class Res:
     spr_back_1_6 = None
     spr_back_1_7 = None
 
+    spr_back_2_morningsky = None
+    spr_back_2_daysky = None
+    spr_back_2_nightsky = None
+
+    spr_back_2_daywater = None
+    spr_back_2_nightwater = None
+
+    spr_back_2_daymountain = None
+    spr_back_2_nightmountain = None
+
+    spr_back_2_daycity = None
+    spr_back_2_nightcity = None
+    spr_back_2_chaoscity = None
+
+    spr_back_2_dayarch = None
+    spr_back_2_nightarch = None
+    spr_back_2_chaosarch = None
+
+    spr_back_2_boss_1 = None
+    spr_back_2_boss_2 = None
+
     snd_main = None
     snd_gameover = None
     snd_back_1 = None
     snd_back_boss_1 = None
+    snd_back_2 = None
+    snd_back_boss_2 = None
+
     snd_ranking = None
 
     snd_shoot = None
+    snd_player_hit = None
     snd_ruby_bomb = None
     snd_e_shoot = None
     snd_destroy = None
@@ -103,6 +129,7 @@ class Res:
 
         self.spr_back_logo = load_image('Resources/Images/BackGrounds/Main/Logo.png')
         self.spr_back_black = load_image('Resources/Images/BackGrounds/Main/Blackscn.png')
+        self.spr_back_blackscreen = load_image('Resources/Images/BackGrounds/Main/Blackscreen.png')
 
         self.spr_back_mainTitle = load_image('Resources/Images/BackGrounds/Main/MainTitle.png')
         self.spr_back_mainTitle_gray = load_image('Resources/Images/BackGrounds/Main/MainTitle_gray.png')
@@ -123,13 +150,43 @@ class Res:
         self.spr_back_1_6 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_4.png')
         self.spr_back_1_7 = load_image('Resources/Images/BackGrounds/Stage_1/Back_1_5.png')
 
+        self.spr_back_2_morningsky = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_4_morning.png')
+        self.spr_back_2_daysky = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_4_day.png')
+        self.spr_back_2_nightsky = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_4_night.png')
+
+        self.spr_back_2_daymountain = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_2_day.png')
+        self.spr_back_2_nightmountain = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_2_night.png')
+
+        self.spr_back_2_daywater = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_3_day.png')
+        self.spr_back_2_nightwater = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_3_night.png')
+
+        self.spr_back_2_daycity = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_1_day.png')
+        self.spr_back_2_nightcity = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_1_night.png')
+        self.spr_back_2_chaoscity = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_1_chaos.png')
+
+
+        self.spr_back_2_dayarch = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_5_day.png')
+        self.spr_back_2_nightarch = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_5_night.png')
+        self.spr_back_2_chaosarch = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_5_chaos.png')
+
+        self.spr_back_2_boss_1 = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_0_0.png')
+        self.spr_back_2_boss_2 = load_image('Resources/Images/BackGrounds/Stage_2/Back_2_0_1.png')
+
+
         self.snd_main = load_music('Resources/Sounds/BGM/fogotten_temple.ogg')
         self.snd_back_1 = load_music('Resources/Sounds/BGM/Fable-Mili.ogg')
-        self.snd_back_boss_1 = load_music('Resources/Sounds/BGM/Nemesis.ogg')
+        self.snd_back_boss_1 = load_music('Resourc/es/Sounds/BGM/Nemesis.ogg')
+
+        self.snd_back_2 = load_music('Resources/Sounds/BGM/Flesvelka.ogg')
+        self.snd_back_boss_2 = load_music('Resources/Sounds/BGM/FAB_MT.ogg')
+
         self.snd_gameover = load_music('Resources/Sounds/BGM/Aases_Death.ogg')
         self.snd_ranking = load_music('Resources/Sounds/BGM/Record.ogg')
         self.snd_shoot = load_wav('Resources/Sounds/SE/plst00.wav')
         self.snd_shoot.set_volume(10)
+
+        self.snd_player_hit = load_wav('Resources/Sounds/SE/Crash.wav')
+        self.snd_player_hit.set_volume(128)
 
         self.snd_ruby_bomb = load_wav('Resources/Sounds/SE/crystal2.wav')
         self.snd_ruby_bomb.set_volume(40)

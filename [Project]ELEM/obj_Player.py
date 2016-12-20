@@ -248,3 +248,4 @@ class Ruby(Player):
     def PlayerHIT(self):
         GameManager.particle += [
             MagicBlast(self.point.x, self.point.y, False)]
+        RES.res.snd_player_hit.play()
