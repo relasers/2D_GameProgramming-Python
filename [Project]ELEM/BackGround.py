@@ -124,7 +124,7 @@ class BKStage1(BackGround):
 
 
 class BKStage2(BackGround):
-    PHASE1, PHASE2, PHASE3, PHASE4,PHASE5,PHASE6,PHASE7 = 0, 1, 2, 3,4,5,6
+    PHASE1, PHASE2, PHASE3, PHASE4,PHASE5,PHASE6,PHASE7,PHASE8 = 0, 1, 2, 3,4,5,6,7
     def __init__(self):
 
         self.state = self.PHASE1
@@ -209,6 +209,10 @@ class BKStage2(BackGround):
         self.chaosarch_opac = 0.5 + math.sin(self.chaosopac_angle * math.pi / 180.0)*0.5
         pass
 
+    def handle_phase_8(self):
+        if self.black_opac < 1:
+            self.black_opac = min(1,self.black_opac + 0.01)
+
     handle_state = {
         PHASE1: handle_phase_1,
         PHASE2: handle_phase_2,
@@ -216,7 +220,8 @@ class BKStage2(BackGround):
         PHASE4: handle_phase_4,
         PHASE5: handle_phase_5,
         PHASE6: handle_phase_6,
-        PHASE7: handle_phase_7
+        PHASE7: handle_phase_7,
+        PHASE8: handle_phase_8
     }
 
     def update(self):
@@ -292,9 +297,9 @@ class BKStage2(BackGround):
         self.scrollingBG(RES.res.spr_back_2_chaosarch, self.x_back_arch, 0, GameManager.CLIENT_WIDTH * 2, 800)
 
         if self.switch_boss is True:
-            RES.res.spr_back_2_boss_1.opacify(random.randint(3, 5) / 10)
+            RES.res.spr_back_2_boss_1.opacify(random.randint(5, 7) / 10)
             self.scrollingBG(RES.res.spr_back_2_boss_1, self.x_back_boss_1, 0, GameManager.CLIENT_WIDTH * 2,1200)
-            RES.res.spr_back_2_boss_2.opacify(random.randint(5, 7) / 10)
+            RES.res.spr_back_2_boss_2.opacify(random.randint(7, 10) / 10)
             self.scrollingBG(RES.res.spr_back_2_boss_2, self.x_back_boss_2, 0, GameManager.CLIENT_WIDTH*2 ,1200)
 
         RES.res.spr_back_blackscreen.opacify(self.black_opac)

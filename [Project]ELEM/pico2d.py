@@ -11,7 +11,7 @@ from sdl2.sdlmixer import *
 
 
 lattice_on = True
-audio_on = True
+audio_on = False
 
 
 def clamp(minimum, x, maximum):
@@ -50,6 +50,8 @@ def open_canvas(w=int(800), h=int(600), sync=False):
     ret = Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024)
     if -1 == ret:
         print('WARNING: Audio functions are disabled due to speaker or sound problems')
+    else:
+        audio_on = True
 
 
     if audio_on:
@@ -372,6 +374,7 @@ def load_music(name):
     else:
         print('audio fuctions cannot work due to sound or speaker problems')
         raise IOError
+
 
 
 def load_wav(name):

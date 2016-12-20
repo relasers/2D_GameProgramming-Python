@@ -278,7 +278,7 @@ def End_Stage():
     if type(GameManager.background) is BKStage1:
         GameManager.maintime = 0
         GameManager.background = BKStage2()
-        GameManager.Timer = T_Stage2()
+        GameManager.timer = T_Stage2()
         GameManager.GameClear = False
         end_timer = 300
 

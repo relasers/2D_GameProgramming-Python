@@ -198,7 +198,7 @@ class Plask(Boss):
         if 2500 < self.HP:
 
             self.shoot_frame += 1
-            if self.shoot_frame % 10 == 0:
+            if self.shoot_frame % 12 == 0:
                 self.shoot_Linear(False)
             if self.shoot_frame > 200:
                 self.stand_frame = 0
@@ -206,7 +206,7 @@ class Plask(Boss):
         else:
 
             self.shoot_frame += 1
-            if self.shoot_frame % 4 == 0:
+            if self.shoot_frame % 8 == 0:
                 self.shoot_Linear(True)
             if self.shoot_frame > 200:
                 self.stand_frame = 0
@@ -217,7 +217,7 @@ class Plask(Boss):
 
         if 2500 < self.HP:
             self.shoot_frame += 1
-            if self.shoot_frame % 20 == 0:
+            if self.shoot_frame % 30 == 0:
                 self.shoot_Rounder(self.shoot_counter,False)
                 self.shoot_counter = (self.shoot_counter+1)%3
             if self.shoot_frame > 200:
@@ -226,7 +226,7 @@ class Plask(Boss):
         else:
 
             self.shoot_frame += 1
-            if self.shoot_frame % 10 == 0:
+            if self.shoot_frame % 20 == 0:
                 self.shoot_Rounder(self.shoot_counter,True)
                 self.shoot_counter = (self.shoot_counter + 1) % 3
             if self.shoot_frame > 200:
@@ -259,7 +259,7 @@ class Plask(Boss):
 
         if 2500 < self.HP:
             self.shoot_frame += 1
-            if self.shoot_frame % 2 == 0:
+            if self.shoot_frame % 4 == 0:
                 self.shoot_ToxicRain(False)
             if self.shoot_frame > 200:
                 self.stand_frame = 0
@@ -267,7 +267,7 @@ class Plask(Boss):
         else:
 
             self.shoot_frame += 1
-            if self.shoot_frame % 1 == 0:
+            if self.shoot_frame % 2 == 0:
                 self.shoot_ToxicRain(True)
             if self.shoot_frame > 200:
                 self.stand_frame = 0
@@ -277,7 +277,7 @@ class Plask(Boss):
 
         if 2500 < self.HP:
             self.shoot_frame += 1
-            if self.shoot_frame % 8 == 0:
+            if self.shoot_frame % 12 == 0:
                 self.shoot_Hurrycane(False)
             if self.shoot_frame > 200:
                 self.stand_frame = 0
@@ -285,13 +285,13 @@ class Plask(Boss):
         else:
 
             self.shoot_frame += 1
-            if self.shoot_frame % 5 == 0:
+            if self.shoot_frame % 9 == 0:
                 self.shoot_Hurrycane(True)
             if self.shoot_frame > 200:
                 self.stand_frame = 0
                 self.state = self.ST_STAND
 
-
-class Nikola(Boss):
+###########################################################################################################################
+class Antikytera(Boss):
     pass
 

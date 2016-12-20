@@ -23,6 +23,7 @@ class Res:
     spr_Fire192 = None
 
     spr_enemy64 = None
+    spr_enemy128 = None
     spr_fairy = None
     spr_carrier = None
 
@@ -108,6 +109,7 @@ class Res:
         self.spr_player_bullet = load_image('Resources/Images/Bullets/RBullet.png')
         self.spr_bullet32 = load_image('Resources/Images/Bullets/Bullet32.png')
         self.spr_enemy64 = load_image('Resources/Images/Characters/Enemy/enemy_64.png')
+        self.spr_enemy128 = load_image('Resources/Images/Characters/Enemy/enemy_128.png')
         self.spr_fairy = load_image('Resources/Images/Characters/Enemy/Fairy.png')
         self.spr_carrier = load_image('Resources/Images/Characters/Enemy/Gilbert.png')
 
@@ -175,7 +177,7 @@ class Res:
 
         self.snd_main = load_music('Resources/Sounds/BGM/fogotten_temple.ogg')
         self.snd_back_1 = load_music('Resources/Sounds/BGM/Fable-Mili.ogg')
-        self.snd_back_boss_1 = load_music('Resourc/es/Sounds/BGM/Nemesis.ogg')
+        self.snd_back_boss_1 = load_music('Resources/Sounds/BGM/Nemesis.ogg')
 
         self.snd_back_2 = load_music('Resources/Sounds/BGM/Flesvelka.ogg')
         self.snd_back_boss_2 = load_music('Resources/Sounds/BGM/FAB_MT.ogg')
