@@ -112,7 +112,7 @@ def handle_events():
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
             RES.res.snd_back_boss_1.repeat_play()
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_k):
-            GameManager.live += 1
+            GameManager.live += 100
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_i):
             End_Stage()
 

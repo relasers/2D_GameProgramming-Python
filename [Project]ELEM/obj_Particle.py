@@ -83,8 +83,8 @@ class MagicBlast(Actor):
         self.point = Vec2D(x, y)
 
         if israndom is True:
-            self.point.x += random.randint(-128, 128)
-            self.point.y += random.randint(-128, 128)
+            self.point.x += random.randint(-300, 300)
+            self.point.y += random.randint(-300, 300)
 
     def isDestroy(self):
         if self.img_frame > 16:

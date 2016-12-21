@@ -1,5 +1,6 @@
 from vector2D import *
 from pico2d import *
+from obj_Particle import *
 import RES
 import GameManager
 import math
@@ -154,7 +155,7 @@ class EneBulletReAngler(EnemyBullet):
 
 
         if self.Speed < 0:
-            self.Speed = self.RememberSpd
+            self.Speed = clamp(0,self.RememberSpd,10)
             self.Angle = random.randint(0,359)
             dice = [1, 2]
             random.shuffle(dice)
@@ -230,6 +231,88 @@ class EneBulletAngleStraighter(EnemyBullet):
                 self.Angle = calcangle(self.point.x, self.point.y, GameManager.Player.point.x,
                                        GameManager.Player.point.y) + random.randint(-10, 10)
             self.Counter -= 1
+class EneBulletTempStopper(EnemyBullet):
+    ST_START, ST_STOP, ST_RESTART, ST_ANGLECANCEL = 0,1,2,3
+
+    RememberSpd = 0
+    Counter = 0
+    img_rad = 0
+
+    state = ST_START
+    stand_frame = 0
+    HIT = 32
+    def __init__(self, spriteid, spritecolor, x, y, angle, anglerate, speed, speedrate, size=int(32)):
+        self.SpriteID = spriteid
+        self.SpriteColor = spritecolor
+        self.point = Vec2D(x, y)
+        self.Angle = angle
+        self.AngleRate = anglerate
+        self.Speed = speed
+        self.RememberSpd = speed
+        self.SpeedRate = speedrate
+        self.Size = 64
+        self.iscollisioned = False
+        self.state = self.ST_START
+        self.stand_frame = 0
+
+    def handle_start(self):
+        self.point.x += self.Speed * math.cos(self.rad)
+        self.point.y += self.Speed * math.sin(self.rad)
+        self.Speed += self.SpeedRate
+
+        if self.Speed < 0:
+            self.state = self.ST_STOP
+        pass
+    def handle_stop(self):
+        self.stand_frame += 1
+        if self.stand_frame > 100:
+            self.stand_frame = 0
+            self.state = self.ST_RESTART
+
+        pass
+    def handle_restart(self):
+        self.stand_frame += 1
+        self.point.x += self.Speed * math.cos(self.rad)
+        self.point.y += self.Speed * math.sin(self.rad)
+        self.Angle += self.AngleRate
+
+        if self.Speed < 6:
+            self.Speed += 1
+
+        if self.stand_frame > 100:
+            self.stand_frame = 0
+            self.state = self.ST_ANGLECANCEL
+
+        pass
+    def handle_anglecancel(self):
+        self.point.x += self.Speed * math.cos(self.rad)
+        self.point.y += self.Speed * math.sin(self.rad)
+        if self.Speed < 6:
+            self.Speed += 1
+        pass
+
+    handle_state = {
+        ST_START: handle_start,
+        ST_STOP: handle_stop,
+        ST_RESTART: handle_restart,
+        ST_ANGLECANCEL: handle_anglecancel
+    }
+
+
+
+
+    def update(self):
+        self.img_rad = (self.img_rad + 0.1) % 360
+        self.rad = self.Angle * math.pi / 180
+        self.handle_state[self.state](self)
+
+    def draw(self):
+        RES.res.spr_bullet64.clip_rotate_draw(self.img_rad, self.SpriteColor * 64, self.SpriteID * 64, 64, 64, self.point.x,
+                                              self.point.y)
+        drawhitbox(self.point, self.HIT)
+
+
+
 
 class EneBulletHatcher(EnemyBullet):
     RememberSpd = 0
@@ -257,11 +340,13 @@ class EneBulletHatcher(EnemyBullet):
         self.point.y += self.Speed * math.sin(self.rad)
 
         if self.LIFE < 0:
+            GameManager.particle += [
+                MagicBlast(self.point.x, self.point.y, False)]
             for i in range(8):
                 GameManager.e_bullet += [
                     # EnemyBullet(random.randint(0, 5), random.randint(0, 6), self.point.x, self.point.y - 18, random.randint(0, 359), 0, 2, 0)
                     EnemyBullet(5, self.SpriteColor, self.point.x, self.point.y - 18,
-                                i*22 + random.randint(-5,5),
+                                i*44 + random.randint(-18,18),
                                 random.randint(1, 2) / 100, 1, 0.01)
                 ]
                 self.HP = -10
@@ -280,5 +365,64 @@ class EneBulletHatcher(EnemyBullet):
         drawhitbox(self.point, self.HIT)
 
 
+##############################################################################################################################
+class EneBulletBenzene(EnemyBullet):
+    RememberSpd = 0
+    Counter = 0
+    LIFE = random.randint(50,150)
+    HIT = 64
+    img_rad = 0
+    img_Frame = 0
+    img_tick = 0
+
+    def __init__(self, spriteid, spritecolor, x, y, angle, anglerate, speed, speedrate, size=int(192)):
+        self.SpriteID = spriteid
+        self.SpriteColor = spritecolor
+        self.point = Vec2D(x, y)
+        self.Angle = angle
+        self.AngleRate = anglerate
+        self.Speed = speed
+        self.RememberSpd = speed
+        self.SpeedRate = speedrate
+        self.Size = size
+        self.iscollisioned = False
 
 
+
+    def update(self):
+        self.img_rad = (self.img_rad + 0.1 ) % 360
+        self.rad = self.Angle * math.pi / 180
+
+        self.point.x += self.Speed * math.cos(self.rad)
+        self.point.y += self.Speed * math.sin(self.rad)
+
+        self.Speed += self.SpeedRate
+        self.Angle += self.AngleRate
+
+        if self.LIFE < 0 or self.Speed < 0:
+            GameManager.particle += [
+                MagicBlast(self.point.x, self.point.y, False)]
+            for i in range(6):
+                GameManager.e_bullet += [
+                    # EnemyBullet(random.randint(0, 5), random.randint(0, 6), self.point.x, self.point.y - 18, random.randint(0, 359), 0, 2, 0)
+                    EnemyBullet(1, self.SpriteColor, self.point.x, self.point.y - 18,
+                                i*60 + self.rad,
+                                random.randint(1, 2) / 100, 5, 0.01)
+                ]
+                self.HP = -10
+
+        self.LIFE -= 1
+
+        self.img_tick += 1
+
+        if self.img_tick > 5:
+            self.img_Frame = (self.img_Frame + 1) % 4
+            self.img_tick = 0
+
+    def draw(self):
+        RES.res.spr_bullet64.clip_rotate_draw(self.img_rad, self.SpriteColor * 64, self.SpriteID * 64, 64, 64, self.point.x,
+                                              self.point.y)
+        drawhitbox(self.point, self.HIT)
+
+
+##############################################################################################################################

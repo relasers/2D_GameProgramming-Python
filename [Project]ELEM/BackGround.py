@@ -74,7 +74,7 @@ class BKStage1(BackGround):
 
     def update(self):
         if GameManager.maintime == 0:
-            RES.res.snd_back_1.set_volume(100)
+            RES.res.snd_back_1.set_volume(120)
             RES.res.snd_back_1.play()
 
         self.x_back_1_1 = (self.x_back_1_1 - self.spd_back_1_1) % GameManager.CLIENT_WIDTH
@@ -91,7 +91,7 @@ class BKStage1(BackGround):
         if GameManager.maintime == 3200:
             self.state += 1
         if GameManager.maintime == 6500:
-            RES.res.snd_back_boss_1.set_volume(100)
+            RES.res.snd_back_boss_1.set_volume(120)
             RES.res.snd_back_boss_1.play()
             self.state += 1
 
@@ -226,7 +226,7 @@ class BKStage2(BackGround):
 
     def update(self):
         if GameManager.maintime == 0:
-            RES.res.snd_back_2.set_volume(100)
+            RES.res.snd_back_2.set_volume(120)
             RES.res.snd_back_2.play()
 
         self.x_back_sky = (self.x_back_sky - self.spd_back_sky) % (GameManager.CLIENT_WIDTH * 2)
@@ -248,7 +248,7 @@ class BKStage2(BackGround):
         if GameManager.maintime == 2920:
             self.state += 1
         if GameManager.maintime == 5720:
-            RES.res.snd_back_boss_2.set_volume(100)
+            RES.res.snd_back_boss_2.set_volume(120)
             RES.res.snd_back_boss_2.play()
             self.state += 1
         if GameManager.maintime == 7350:
@@ -311,10 +311,10 @@ class BKStage2(BackGround):
             img.clip_draw_to_origin(0, 0, width, height, x - width,y)
 
     def pauseMusic(self):
-        RES.res.snd_back_1.pause()
+        RES.res.snd_back_2.pause()
 
     def resumeMusic(self):
-        RES.res.snd_back_1.resume()
+        RES.res.snd_back_2.resume()
 
 class BKStage3(BackGround):
     pass

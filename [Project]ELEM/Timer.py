@@ -29,32 +29,36 @@ class T_Stage1(Timer):
 
     def handle_phase_1(self):
 
-
+        """
         if self.isDebug is True:
+
             if self.t_frame == 10:
                 GameManager.enemy += [
                     Plask(GameManager.CLIENT_WIDTH, (GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE)/2,
                             180, 0, 7, -0.1)
                 ]
-
-
         else:
+        """
 
-            if self.t_frame < 900:
-                if self.t_phase_frame % 60 == 0:
-                    GameManager.enemy += [
-                        Enemy64(0, GameManager.CLIENT_WIDTH, random.randint(0, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE),
-                            180, 0, 10, -0.1),
-                ]
-            elif 900 < self.t_frame:
-                if self.t_phase_frame % 30 == 0:
-                    GameManager.enemy += [
-                    Enemy64(2, GameManager.CLIENT_WIDTH, random.randint(0, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE),
-                            180, 0, 10, -0.1),
-                ]
-            if self.t_frame > 1600:
-                self.t_phase_frame = 349
-                self.state = self.PHASE_2
+
+
+
+
+        if self.t_frame < 900:
+            if self.t_phase_frame % 60 == 0:
+                GameManager.enemy += [
+                    Enemy64(0, GameManager.CLIENT_WIDTH, random.randint(0, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE),
+                        180, 0, 10, -0.1),
+            ]
+        elif 900 < self.t_frame:
+            if self.t_phase_frame % 30 == 0:
+                GameManager.enemy += [
+                Enemy64(2, GameManager.CLIENT_WIDTH, random.randint(0, GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE),
+                        180, 0, 10, -0.1),
+            ]
+        if self.t_frame > 1600:
+            self.t_phase_frame = 349
+            self.state = self.PHASE_2
 
     def handle_phase_2(self):
         if self.t_phase_frame % 350 == 0:
@@ -197,8 +201,8 @@ class T_Stage2(Timer):
         if self.isDebug is True:
             if self.t_frame == 10:
                 GameManager.enemy += [
-                    Plask(GameManager.CLIENT_WIDTH, (GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE)/2,
-                            180, 0, 7, -0.1)
+                    Antikytera(GameManager.CLIENT_WIDTH*0.75, 0,
+                            90, 0, 14, -0.25)
                 ]
 
 
@@ -316,9 +320,9 @@ class T_Stage2(Timer):
     def handle_phase_8(self):
         if self.t_frame == 7350:
             GameManager.enemy += [
-            Plask(GameManager.CLIENT_WIDTH, (GameManager.CLIENT_HEIGHT - GameManager.UI_SIZE) / 2,
-                  180, 0, 7, -0.1)
-        ]
+                Antikytera(GameManager.CLIENT_WIDTH * 0.75, 0,
+                           90, 0, 14, -0.25)
+            ]
         pass
 
     handle_state = {

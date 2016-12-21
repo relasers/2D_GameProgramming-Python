@@ -28,7 +28,10 @@ class Res:
     spr_carrier = None
 
     spr_boss1 = None
-    spr_boss2 = None
+    spr_boss2_base = None
+    spr_boss2_soul = None
+    spr_boss2_wing = None
+
 
     spr_ring = None
     spr_core = None
@@ -97,6 +100,7 @@ class Res:
     snd_ruby_bomb = None
     snd_e_shoot = None
     snd_destroy = None
+    snd_defeat = None
     snd_alarm = None
     def __init__(self):
 
@@ -117,7 +121,9 @@ class Res:
         self.spr_Fire192 = load_image('Resources/Images/Bullets/Fire_192.png')
 
         self.spr_boss1 = load_image('Resources/Images/Characters/Enemy/Boss1.png')
-        self.spr_boss2 = load_image('Resources/Images/Characters/Enemy/Boss1.png')
+        self.spr_boss2_base = load_image('Resources/Images/Characters/Enemy/Boss2_Base.png')
+        self.spr_boss2_soul = load_image('Resources/Images/Characters/Enemy/Boss2_Soul.png')
+        self.spr_boss2_wing= load_image('Resources/Images/Characters/Enemy/Boss2_Wing.png')
 
         self.spr_ring = load_image('Resources/Images/Effects/tunelring.png')
         self.spr_core = load_image('Resources/Images/Effects/Core256.png')
@@ -191,13 +197,16 @@ class Res:
         self.snd_player_hit.set_volume(128)
 
         self.snd_ruby_bomb = load_wav('Resources/Sounds/SE/crystal2.wav')
-        self.snd_ruby_bomb.set_volume(40)
+        self.snd_ruby_bomb.set_volume(128)
 
         self.snd_e_shoot = load_wav('Resources/Sounds/SE/tan01.wav')
-        self.snd_e_shoot.set_volume(1)
+        self.snd_e_shoot.set_volume(10)
 
         self.snd_destroy = load_wav('Resources/Sounds/SE/tan00.wav')
-        self.snd_destroy.set_volume(20)
+        self.snd_destroy.set_volume(64)
+
+        self.snd_defeat = load_wav('Resources/Sounds/SE/DEFEATED.wav')
+        self.snd_defeat.set_volume(128)
 
         self.snd_alarm = load_wav('Resources/Sounds/SE/Alarm.wav')
 
