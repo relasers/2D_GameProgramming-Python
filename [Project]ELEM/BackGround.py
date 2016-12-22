@@ -133,7 +133,7 @@ class BKStage2(BackGround):
         self.x_spd_back_mountain = 3
         self.x_spd_back_water = 5
         self.x_spd_back_city = 7
-        self.x_spd_back_arch = 10
+        self.x_spd_back_arch = 8.5
 
         self.y_spd_back_lake = 2
 
@@ -175,24 +175,37 @@ class BKStage2(BackGround):
             self.y_back_lake += self.y_spd_back_lake
         pass
     def handle_phase_3(self):
+
+        if self.y_back_lake < 0:
+            self.y_back_lake = 0
+
         if self.spd_back_sky < 3:
-            self.spd_back_sky += 0.01
-            self.x_spd_back_mountain += 0.01
-            self.x_spd_back_water += 0.015
+            self.spd_back_sky += 0.05
+            self.x_spd_back_mountain += 0.05
+            self.x_spd_back_water += 0.055
         pass
 
     def handle_phase_4(self):
+        if self.y_back_lake < 0:
+            self.y_back_lake = 0
+
         if self.daycity_opac < 1:
             self.daycity_opac = min(1,self.daycity_opac + 0.05)
 
         pass
 
     def handle_phase_5(self):
+        if self.y_back_lake < 0:
+            self.y_back_lake = 0
+
         if self.dayarch_opac < 1:
             self.dayarch_opac = min(1,self.dayarch_opac + 0.05)
         pass
 
     def handle_phase_6(self):
+        if self.y_back_lake < 0:
+            self.y_back_lake = 0
+
         if self.daysky_opac > 0:
             self.daysky_opac = max(0,self.daysky_opac - 0.01)
             self.lake_opac = max(0,self.lake_opac - 0.01)
@@ -204,6 +217,9 @@ class BKStage2(BackGround):
         pass
 
     def handle_phase_7(self):
+        if self.y_back_lake < 0:
+            self.y_back_lake = 0
+
         self.switch_boss = True
         self.chaosopac_angle = (self.chaosopac_angle + 1) % 360
         self.chaosarch_opac = 0.5 + math.sin(self.chaosopac_angle * math.pi / 180.0)*0.5

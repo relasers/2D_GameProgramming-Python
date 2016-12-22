@@ -112,7 +112,8 @@ def handle_events():
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_k):
             GameManager.live += 10
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_i):
-            End_Stage()
+            if GameManager.DEBUG_MODE is True:
+                End_Stage()
 
 
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_o): # Toggle Collision Box

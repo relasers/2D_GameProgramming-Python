@@ -3,6 +3,7 @@ from obj_Bullet import *
 from obj_Player import *
 from BackGround import *
 from Timer import *
+import json
 
 CLIENT_WIDTH = 1200
 CLIENT_HEIGHT = 768
@@ -27,6 +28,7 @@ Player_Power = 0.0
 maintime = 0
 total_time = 0
 score = 0
+DEBUG_MODE = False
 
 def buildgame():
     global Player
@@ -44,7 +46,7 @@ def buildgame():
     global maintime
     global total_time
     global score
-
+    global DEBUG_MODE
     global GameClear
 
     Player = Ruby(600, 600)
@@ -58,8 +60,16 @@ def buildgame():
     item = []
     particle = []
 
-    live = 20
-    curr_bomb = 5
+    f = open('GameInit.txt', 'r')
+    init_data = json.load(f)
+    f.close()
+
+    live = init_data['StartLive']
+    curr_bomb = init_data['Bomb']
+    if init_data['DebugMode'] == 1:
+        DEBUG_MODE = True
+    else:
+        DEBUG_MODE = False
     Player_Power = 0
     maintime = 0
     total_time = 0
