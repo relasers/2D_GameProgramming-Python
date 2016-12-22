@@ -498,7 +498,7 @@ class Antikytera(Boss):
 
         if 2500 < self.HP:
             self.shoot_frame += 1
-            if self.shoot_frame % 10 == 0:
+            if self.shoot_frame % 8 == 0:
                 self.shoot_Rounder(self.shoot_counter, False)
                 self.shoot_counter = (self.shoot_counter + 1) % 6
             if self.shoot_frame > 200:
@@ -507,7 +507,7 @@ class Antikytera(Boss):
         else:
 
             self.shoot_frame += 1
-            if self.shoot_frame % 5 == 0:
+            if self.shoot_frame % 4 == 0:
                 self.shoot_Rounder(self.shoot_counter, True)
                 self.shoot_counter = (self.shoot_counter + 1) % 6
             if self.shoot_frame > 200:

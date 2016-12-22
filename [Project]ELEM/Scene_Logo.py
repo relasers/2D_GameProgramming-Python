@@ -5,7 +5,11 @@ import RES
 name = "LogoState"
 image = None
 logo_time = 0.0
-opacify = 1.0
+
+blackopacify = 1.0
+warpopacify = 1.0
+profileopacify = 1.0
+
 
 def enter():
     pass
@@ -16,25 +20,33 @@ def exit():
 
 def update():
     global logo_time
-    global opacify
+    global blackopacify, warpopacify, profileopacify
 
-    if logo_time > 1.0 :
+    if 1.5 > logo_time > 0.0:
+        blackopacify = max(0, blackopacify - 0.01)
+    if logo_time > 1.5:
+        warpopacify = max(0, warpopacify - 0.01)
+    if logo_time > 3.0:
+        blackopacify = min(1, blackopacify + 0.01)
+    if logo_time > 4.0:
         logo_time = 0
         FrameWork.push_state(Scene_Title)
-
-    opacify -= 0.01
     logo_time += 0.01
     pass
 
 def draw():
-    global opacify
+    global blackopacify, warpopacify, profileopacify
 
     clear_canvas()
-    RES.res.spr_back_blackscreen.opacify(opacify)
-    RES.res.spr_back_blackscreen.draw(600,384)
-    #RES.res.spr_back_logo.opacify(opacify)
-    #RES.res.spr_back_logo.clip_draw_to_origin(0,0,1200,800,0, 0)
-    RES.res.spr_back_logo.draw(600,400)
+
+    RES.res.spr_back_blackscreen.opacify(blackopacify)
+    RES.res.spr_back_logo.opacify(warpopacify)
+    RES.res.spr_back_profile.opacify(profileopacify)
+
+    RES.res.spr_back_profile.draw(600, 384)
+    RES.res.spr_back_logo.draw(600, 384)
+    RES.res.spr_back_blackscreen.draw(600, 384)
+
     update_canvas()
     pass
 

@@ -711,10 +711,10 @@ class Enemy_grnlamp(Enemy):
     def handle_shoot(self):
         self.shoot_frame += 1
         if GameManager.maintime < 4700:
-            if self.shoot_frame % 20 == 0:
+            if self.shoot_frame % 30 == 0:
                 self.shoot()
         else:
-            if self.shoot_frame % 12 == 0:
+            if self.shoot_frame % 4 == 0:
                 self.shoot()
         if self.shoot_frame > 100:
             self.stand_frame = 0

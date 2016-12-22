@@ -55,6 +55,8 @@ class Res:
     spr_back_rankpage = None
 
     spr_back_logo = None
+    spr_back_profile = None
+
     spr_back_black = None
     spr_back_blackscreen = None
     spr_back_1_1 = None
@@ -138,6 +140,7 @@ class Res:
         self.spr_back_logo = load_image('Resources/Images/BackGrounds/Main/Logo.png')
         self.spr_back_black = load_image('Resources/Images/BackGrounds/Main/Blackscn.png')
         self.spr_back_blackscreen = load_image('Resources/Images/BackGrounds/Main/Blackscreen.png')
+        self.spr_back_profile = load_image('Resources/Images/BackGrounds/Main/myprofile.png')
 
         self.spr_back_mainTitle = load_image('Resources/Images/BackGrounds/Main/MainTitle.png')
         self.spr_back_mainTitle_gray = load_image('Resources/Images/BackGrounds/Main/MainTitle_gray.png')

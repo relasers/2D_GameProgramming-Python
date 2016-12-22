@@ -109,10 +109,8 @@ def handle_events():
             FrameWork.quit()
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_q):
             GameManager.Player_Power = min(500,GameManager.Player_Power+100)
-        elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_e):
-            RES.res.snd_back_boss_1.repeat_play()
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_k):
-            GameManager.live += 100
+            GameManager.live += 10
         elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_i):
             End_Stage()
 
